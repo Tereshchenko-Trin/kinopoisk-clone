@@ -1,0 +1,146 @@
+@mixin desktopH1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 40px;
+	line-height: 60px;
+}
+
+@mixin desktopH2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 36px;
+}
+
+@mixin desktopH3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+@mixin desktopS1-1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+@mixin desktopS1-2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin desktopS1-3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin desktopBody() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tabletH1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 48px;
+}
+
+@mixin tabletH2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 36px;
+}
+
+@mixin tabletH3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 32px;
+}
+
+@mixin tabletS1-1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+@mixin tabletS1-2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tabletS1-3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin tabletBody() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin mobileH1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 36px;
+}
+
+@mixin mobileH2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 42px;
+}
+
+@mixin mobileH3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 28px;
+}
+
+@mixin mobileS1-1() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+@mixin mobileS1-2() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin mobileS1-3() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+@mixin mobileBody() {
+	font-family: 'Exo 2', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
