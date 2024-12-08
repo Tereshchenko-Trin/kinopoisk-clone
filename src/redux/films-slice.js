@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { requestFilms } from '../services/films'
 
 const initialState = {
   list: [],
@@ -9,8 +10,12 @@ const initialState = {
   // ordering: ''
 }
 
-export const fetchFilms = createAsyncThunk('films/fetchFilms', async () => {
+export const fetchFilms = createAsyncThunk('films/fetchFilms', async (params = {}, { getState }) => {
+  const limit = getState().films.limit
+  const data = await requestFilms({ limit, ...params})
 
+  console.log(data.items)
+  return data
 })
 
 export const filmsSlice = createSlice({
@@ -26,7 +31,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.list = action.payload.results
+        state.list = action.payload.items
       })
       .addCase(fetchFilms.rejected, (state, action) => {
         state.isLoaded = false
