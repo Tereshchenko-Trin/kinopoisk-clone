@@ -3,6 +3,5 @@
 @import '@/styles/variables.scss';
 @import '@/styles/mixins.scss';
 
-h1 {
-  @include desktopH1();
-}
+@import '@/styles/body.scss';
+@import '@/styles/card.scss';
