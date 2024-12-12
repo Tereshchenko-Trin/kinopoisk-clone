@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { requestFilms } from '../services/films'
+import { requestFilms } from '@/services/films'
 
 const initialState = {
   list: [],

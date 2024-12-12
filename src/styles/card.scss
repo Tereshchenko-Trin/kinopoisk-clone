@@ -48,7 +48,12 @@
 	  background-position: center;
 	  background-size: contain;
   }
-  &__text {}
+  
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
   &__title {
     @include desktopS1-2();
