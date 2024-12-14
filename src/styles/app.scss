@@ -2,7 +2,7 @@
 @import '@/styles/fonts.scss';
 @import '@/styles/variables.scss';
 @import '@/styles/mixins.scss';
+@import '@/styles/_resetStyles.scss';
 
-h1 {
-  @include desktopH1();
-}
+@import '@/styles/body.scss';
+@import '@/styles/card.scss';
