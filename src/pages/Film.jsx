@@ -1,16 +1,18 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchFilm } from '@/redux/film-slice'
+import { fetchFilm, fetchFilmStaff, fetchFilmBoxOffice } from '@/redux/film-slice'
 import { FilmInfo } from '@/components/FilmInfo'
 
 export function Film() {
   const dispatch = useDispatch()
   const { filmId } = useParams()
-  const { data: film, isLoading, error } = useSelector((state) => state.film)
+  const { data: film, staffList, boxOffice, isLoading, error } = useSelector((state) => state.film)
 
   useEffect(() => {
     dispatch(fetchFilm(filmId))
+    dispatch(fetchFilmStaff(filmId))
+    dispatch(fetchFilmBoxOffice(filmId))
   }, [filmId, dispatch])
 
   if (isLoading) {
@@ -19,13 +21,15 @@ export function Film() {
 
 	if (error) {
 		return <div>{error}</div>
-	}
+	} 
 
 	if (!film) {
 		return <div>Film not found</div>
 	}
 
   return (
-    <FilmInfo key={film.id} {...film} />
+    <>
+      <FilmInfo key={film.id} filmInfo={{ ...film }} staffInfo={[ ...staffList ]} boxOfficeInfo={[ ...boxOffice ]} />
+    </>
   )
 }

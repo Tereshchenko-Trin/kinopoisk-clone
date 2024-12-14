@@ -1,7 +1,7 @@
 import { get } from '@/utils/client'
 import { 
   filmEndpoint,
-  // filmBoxOfficeEndpoint,
+  filmBoxOfficeEndpoint,
   filmStaffEndpoint
 } from '@/config/api'
 
@@ -18,9 +18,9 @@ export const requestFilm = async (kinopoiskId) => {
   }
 }
 
-export const requestFilmBoxOffice = async () => {
+export const requestFilmStaff = async (params = {}) => {
   try {
-    const response = await get(filmBoxOfficeEndpoint)
+    const response = await get(filmStaffEndpoint, { params })
 
     return response.data
   } catch (error) {
@@ -31,9 +31,9 @@ export const requestFilmBoxOffice = async () => {
   }
 }
 
-export const requestFilmStaff = async () => {
+export const requestFilmBoxOffice = async (kinopoiskId) => {
   try {
-    const response = await get(filmStaffEndpoint)
+    const response = await get(`${filmBoxOfficeEndpoint}${kinopoiskId}/box_office`)
 
     return response.data
   } catch (error) {

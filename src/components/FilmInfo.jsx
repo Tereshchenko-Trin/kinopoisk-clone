@@ -1,69 +1,60 @@
-export function FilmInfo (props) {
-  function renderTitle(props) {
-    if (props.nameOriginal) {
-      return <h1 className="film__title">{props.nameOriginal}</h1>
-    } else {
-      return <h1 className="film__title">{props.nameRu}</h1>
-    }
-  }
+import {
+  renderTitle,
+  renderGenres,
+  renderCountries,
+  renderActors,
+  renderDirectors,
+  renderProducers,
+  renderWriters,
+  renderBoxOffice
+} from '@/utils/helpersRender'
 
-  function renderGenres(props) {
-    if (!props.genres) return null
-
-    const filmGenres = props.genres.map((item) => item.genre).join(' · ')
-
-    return <p className="film__genres">{filmGenres}</p>
-  }
-
+export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo}) {
   return (
     <div className="film">
       <div className="film__poster">
-        <img src={props.posterUrl} alt="poster" />
+        <img src={filmInfo.posterUrl} alt="poster" />
       </div>
       <div className="film__buttons">
       </div>
       <div className="film__info-container">
-        {renderGenres(props)}
-        {renderTitle(props)}
+        <p className="film__genres">{renderGenres(filmInfo)}</p>
+        <h1 className="film__title">{renderTitle(filmInfo)}</h1>
         <div className="film__ratings">
-          <div className="film__rating_kinopoisk">{props.ratingKinopoisk}</div>
-          <div className="film__rating_imdb">{props.ratingImdb}</div>
-          <div className="film__ratings_duration">{props.filmLength}</div>
+          <div className="film__rating_kinopoisk">{filmInfo.ratingKinopoisk}</div>
+          <div className="film__rating_imdb">{filmInfo.ratingImdb}</div>
+          <div className="film__ratings_duration">{filmInfo.filmLength}</div>
         </div>
-        <p className="film__description">{props.description}</p>
+        <p className="film__description">{filmInfo.description}</p>
         <table className="film__info">
           <tbody>
             <tr>
               <td>Year</td>
-              <td>{props.year}</td>
-            </tr>
-            <tr>
-              <td>Released</td>
-              <td></td>
+              <td>{filmInfo.year}</td>
             </tr>
             <tr>
               <td>BoxOffice</td>
-              <td></td>
+              <td>{renderBoxOffice(boxOfficeInfo)}</td>
             </tr>
             <tr>
               <td>Country</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Production</td>
-              <td></td>
+              <td>{renderCountries(filmInfo)}</td>
             </tr>
             <tr>
               <td>Actors</td>
-              <td></td>
+              <td>{renderActors(staffInfo)}</td>
             </tr>
             <tr>
               <td>Director</td>
-              <td></td>
+              <td>{renderDirectors(staffInfo)}</td>
+            </tr>
+            <tr>
+              <td>Producers</td>
+              <td>{renderProducers(staffInfo)}</td>
             </tr>
             <tr>
               <td>Writers</td>
-              <td></td>
+              <td>{renderWriters(staffInfo)}</td>
             </tr>
           </tbody>
         </table>
