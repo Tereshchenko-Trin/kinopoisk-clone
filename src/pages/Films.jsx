@@ -1,6 +1,6 @@
 import { CardsList } from '@/components/CardsList'
 
-export function Trends() {
+export function Films() {
   return (
     <CardsList />
   )

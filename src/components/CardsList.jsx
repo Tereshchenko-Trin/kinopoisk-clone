@@ -1,6 +1,7 @@
+import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFilms } from '../redux/films-slice'
+import { fetchFilms } from '@/redux/films-slice'
 import { Card } from '@/components/Card'
 
 export function CardsList () {
@@ -9,6 +10,7 @@ export function CardsList () {
 
   useEffect(() => {
     dispatch(fetchFilms())
+    console.log('dispatch')
   }, [dispatch])
 
   function renderCards() {
@@ -18,11 +20,15 @@ export function CardsList () {
   }
 
   if (isLoaded) {
-    return <div>Loading</div>
+    return (
+      <div className="loader-container">
+        <span className="loader"></span>
+      </div>
+    )
   }
 
   if (error) {
-    return <div>{error}</div>
+    return <Navigate to="/error" />
   }
 
   if (films.length == 0) {

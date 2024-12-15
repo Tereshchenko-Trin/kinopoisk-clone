@@ -1,7 +1,6 @@
-export function Button({ children, type }) {
+export function Button({ children, type, onClick }) {
   
-
   return (
-    <button className={type}>{children}</button>
+		<button type={type} className="button" onClick={onClick}>{children}</button>
   )
 }

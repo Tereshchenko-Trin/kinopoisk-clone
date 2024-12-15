@@ -1,0 +1,29 @@
+.introduction {
+  width: 100%;
+  min-height: 100dvh;
+  background-image: url('../assets/images/bg.avif');
+  margin: auto;
+  padding: 0px 15px;
+  display: flex;
+  flex-direction: column;
+
+  &__logo-container {
+    padding: 40px 0px;
+  }
+
+  &__content {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  &__title {
+    text-align: center;
+    color: $contextualWhite;
+    @include desktopH1();
+  }
+}

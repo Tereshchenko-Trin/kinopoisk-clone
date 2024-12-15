@@ -7,9 +7,10 @@ export const requestFilms = async (params = {}) => {
 
     return response.data
   } catch (error) {
+    console.log(error.message)
     return {
       hasError: error,
-      ...error
+      errorMessage: error.message,
     }
   }
 }

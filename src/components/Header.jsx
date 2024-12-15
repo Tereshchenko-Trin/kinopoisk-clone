@@ -1,5 +1,7 @@
+import Logo from '@/assets/icons/iconLogoDark.svg'
 import { NavLink } from 'react-router-dom'
-import Logo from '@/assets/images/iconLogoDark.svg'
+import { SearchForm } from '@/components/SearchForm'
+import { IconButton } from '@/components/shared/IconButton'
 
 export function Header() {
   return (
@@ -7,7 +9,11 @@ export function Header() {
       <NavLink to="/">
         <img className="header__logo" src={Logo} alt="logo" />
       </NavLink>
-      <button className="header__button">Sign in</button>
+      <div className="header__interface">
+        <SearchForm className="header__search" />
+        <IconButton type="user" className="header__button">Sign in</IconButton>
+        <IconButton type="arrowDown"/>
+      </div>
     </div>
   )
 }
