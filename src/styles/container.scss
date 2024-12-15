@@ -1,0 +1,13 @@
+.container {
+  &_main {
+    max-width: 1796px;
+    width: 100%;
+    margin: auto;
+    padding: 0px 15px;
+  }
+
+  &_home {
+    display: flex;
+    gap: 40px;
+  }
+}

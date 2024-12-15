@@ -13,7 +13,7 @@ export const requestFilm = async (kinopoiskId) => {
   } catch (error) {
     return {
       hasError: error,
-      ...error
+      errorMessage: error.message,
     }
   }
 }
@@ -26,7 +26,7 @@ export const requestFilmStaff = async (params = {}) => {
   } catch (error) {
     return {
       hasError: error,
-      ...error
+      errorMessage: error.message,
     }
   }
 }
@@ -39,7 +39,7 @@ export const requestFilmBoxOffice = async (kinopoiskId) => {
   } catch (error) {
     return {
       hasError: error,
-      ...error
+      errorMessage: error.message,
     }
   }
 }

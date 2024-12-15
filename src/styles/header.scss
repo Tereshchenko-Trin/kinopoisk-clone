@@ -1,0 +1,23 @@
+.header {
+  padding: 40px 0px;
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    max-width: 158px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__interface {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__button {
+    max-width: 56px;
+    height: 56px;
+    color: $contextualWhite;
+  }
+}

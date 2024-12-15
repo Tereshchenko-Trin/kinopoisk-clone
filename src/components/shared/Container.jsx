@@ -1,6 +1,6 @@
 export function Container({ children }) {
   return (
-    <div className="">
+    <div className="container_main">
       {children}
     </div>
   )  

@@ -6,8 +6,8 @@ import { Main } from '@/components/shared/Main'
 export function Layout() {
   return (
     <div className="layout">
-      <Header />
       <Container>
+        <Header />
         <Main>
           <Outlet />
         </Main>
