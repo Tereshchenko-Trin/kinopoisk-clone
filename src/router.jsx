@@ -5,6 +5,7 @@ import { Home } from '@/pages/Home'
 import { Films } from '@/pages/Films'
 import { Favorites } from '@/pages/Favorites'
 import { Trends } from '@/pages/Trends'
+import { FilmsSearch } from '@/pages/FilmsSearch'
 import { Film } from '@/pages/Film'
 import { ErrorPage } from '@/pages/ErrorPage'
 
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             path: ':filmId',
             element: <Film />
           },
+          {
+						path: 'search/:query/',
+						element: <FilmsSearch />,
+					},
         ]
       },
       {

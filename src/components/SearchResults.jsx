@@ -1,20 +1,22 @@
 import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchFilms } from '@/redux/films-slice'
+import { fetchFilmsSearch } from '@/redux/films-slice'
 import { Card } from '@/components/Card'
 
-export function CardsList () {
+export function SearchResults () {
   const dispatch = useDispatch()
-  const { list: films, isLoaded, error } = useSelector((state) => state.films)
+  const { query } = useParams()
+  const { searchList: films, isLoaded, error } = useSelector((state) => state.films)
 
   useEffect(() => {
-    dispatch(fetchFilms())
-  }, [dispatch])
+    dispatch(fetchFilmsSearch({ keyword: query }))
+  }, [dispatch, query])
 
   function renderCards() {
     return (
-      films.map((film) => <Card key={film.kinopoiskId} {...film} ></Card>)
+      films.map((film) => <Card key={film.filmId} {...film} ></Card>)
     )
   }
 

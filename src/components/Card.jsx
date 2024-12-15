@@ -8,6 +8,8 @@ export function Card(props) {
     'card__rating-container_orange': props.ratingKinopoisk < 5,
   })}`
 
+  const path = (props.kinopoiskId) ? `/home/${props.kinopoiskId}` : `/home/${props.filmId}`
+
   function renderTitle(props) {
     if (props.nameOriginal) {
       return <p className="card__title">{props.nameOriginal}</p>
@@ -22,10 +24,10 @@ export function Card(props) {
     const filmGenres = props.genres.map((item) => item.genre).join(' · ')
 
     return <p className="card__genres">{filmGenres}</p>
-  } 
+  }
 
   return (
-    <Link to={`/home/${props.kinopoiskId}`}>
+    <Link to={path}>
       <div className="card">
         <div className="card__poster">
           <div className={ratingContainerClassName}
