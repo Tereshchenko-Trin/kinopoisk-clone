@@ -11,7 +11,6 @@ const initialState = {
 
 export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId, { rejectWithValue }) => {
   const data = await requestFilm(kinopoiskId)
-  console.log(data)
 
   if (data.hasError) {
     return (rejectWithValue(data))
@@ -20,9 +19,8 @@ export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId, 
   return data
 })
 
-export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (filmId = {}, { rejectWithValue }) => {
-  const data = await requestFilmStaff({ filmId })
-  console.log(data)
+export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (filmId, { rejectWithValue }) => {
+  const data = await requestFilmStaff(filmId)
 
   if (data.hasError) {
     return (rejectWithValue(data))
@@ -33,7 +31,6 @@ export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (fil
 
 export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', async (kinopoiskId, { rejectWithValue }) => {
   const data = await requestFilmBoxOffice(kinopoiskId)
-  console.log(data.items)
 
   if (data.hasError) {
     return (rejectWithValue(data))

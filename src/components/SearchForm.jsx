@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { IconButton } from '@/components/shared/IconButton'
 
 export function SearchForm() {
 	const navigate = useNavigate()
@@ -15,22 +14,21 @@ export function SearchForm() {
 		event.preventDefault()
 
 		const encodedQuery = encodeURIComponent(query)
-		navigate(`/films/search/${encodedQuery}/1`)
+		navigate(`/home/search/${encodedQuery}/`)
 	}
 
 	return (
 		<form className="search" onSubmit={handleSubmit}>
 			<div className="search__area">
-				<label htmlFor="search"></label>
+				<label htmlFor="search" />
 				<input
 				type="search"
 				className="search__input"
 				id="search"
-				value={query}
+				value={query || ''}
 				onChange={handleChange}
 				placeholder="Search..."></input>
 			</div>
-      <IconButton type="filter" />
 		</form>
 	)
 }

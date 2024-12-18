@@ -67,8 +67,8 @@ export function IconButton({ type, children, onClick }) {
 
     case 'filter':
       return (
-        <button type="button" className="icon-button" onClick={onClick}>
-          <img src={Filter} alt="filter" className="icon" />
+        <button type="button" className="icon-button icon-button_filter" onClick={onClick}>
+          <img src={Filter} alt="filter" className="icon icon_filter" />
           {children}
         </button>
       )

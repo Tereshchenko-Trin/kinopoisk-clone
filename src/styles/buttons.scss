@@ -1,4 +1,5 @@
 .button {
+  max-width: 300px;
   width: 100%;
 	height: 56px;
 	padding: 16px 70px;
@@ -57,7 +58,7 @@
     color: $systemPrimary;
   } 
   
-  &>.icon:hover {
+  &>.icon:active {
     filter: var(--system-primary);
   }
 }
@@ -66,7 +67,7 @@
   margin-right: 20px;
   filter: var(--system-secondary);
 
-  &_user {
+  &_user, &_filter {
     margin-right: 0px;
     filter: var(--contextual-white);
   }

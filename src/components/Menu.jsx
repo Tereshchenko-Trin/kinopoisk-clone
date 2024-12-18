@@ -17,6 +17,9 @@ export function Menu() {
 				<NavLink to="/home/settings">
          <IconButton type="settings">Settings</IconButton>
 				</NavLink>
+				<NavLink to="/home/filter">
+         <IconButton type="settings">Filter</IconButton>
+				</NavLink>
 			</nav>
 
       <div className="menu__footer">
