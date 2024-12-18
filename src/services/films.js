@@ -20,11 +20,9 @@ export const requestFilmsSearch = async (params = {}) => {
 
     return response.data
   } catch (error) {
-    console.log(error.message)
     return {
       hasError: error,
       errorMessage: error.message,
     }
   }
 }
-

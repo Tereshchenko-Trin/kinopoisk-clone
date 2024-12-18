@@ -6,9 +6,8 @@ const initialState = {
   searchList: [],
   isLoaded: false,
   error: null,
-  limit: 10,
+  limit: 20,
   pageCount: null,
-  // ordering: ''
 }
 
 export const fetchFilms = createAsyncThunk('films/fetchFilms', async (params = {}, { getState }) => {

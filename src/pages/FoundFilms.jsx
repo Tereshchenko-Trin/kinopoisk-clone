@@ -1,6 +1,6 @@
 import { SearchResults } from '@/components/SearchResults'
 
-export function FilmsSearch() {
+export function FoundFilms() {
   return (
     <SearchResults />
   )

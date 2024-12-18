@@ -1,12 +1,14 @@
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFilmsSearch } from '@/redux/films-slice'
-import { Card } from '@/components/Card'
+import { FilmCard } from '@/components/FilmCard'
+import { Loader } from '@/components/Loader'
 
 export function SearchResults () {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { query } = useParams()
   const { searchList: films, isLoaded, error } = useSelector((state) => state.films)
 
@@ -16,25 +18,15 @@ export function SearchResults () {
 
   function renderCards() {
     return (
-      films.map((film) => <Card key={film.filmId} {...film} ></Card>)
+      films.map((film) => <FilmCard key={film.filmId} {...film} ></FilmCard>)
     )
   }
 
-  if (isLoaded) {
-    return (
-      <div className="loader-container">
-        <span className="loader"></span>
-      </div>
-    )
-  }
+  if (isLoaded) return <Loader />
 
-  if (error) {
-    return <Navigate to="/error" />
-  }
+  if (error) navigate('/error')
 
-  if (films.length == 0) {
-    return <div>No films</div>
-  }
+  if (films == undefined) return <div>No films</div>
 
   return (
     <div className="cards">

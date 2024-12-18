@@ -56,6 +56,8 @@ export function renderWriters(props) {
 
 // from boxOfficeInfo
 export function renderBoxOffice(props) {
+  if (props.length == 0) return ''
+
   const filmBoxOfficeWorld = props.filter((item) => item.type == 'WORLD')
   const total = +(filmBoxOfficeWorld.map((item) => item.amount).join(''))
   const currency = filmBoxOfficeWorld.map((item) => item.symbol)

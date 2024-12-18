@@ -1,7 +1,7 @@
-import { CardsList } from '@/components/CardsList'
+import { FilmsList } from '@/components/FilmsList'
 
 export function Films() {
   return (
-    <CardsList />
+    <FilmsList />
   )
 }

@@ -1,11 +1,13 @@
-import { Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { fetchFilms } from '@/redux/films-slice'
-import { Card } from '@/components/Card'
+import { FilmCard } from '@/components/FilmCard'
+import { Loader } from '@/components/Loader'
 
-export function CardsList () {
+export function FilmsList () {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { list: films, isLoaded, error } = useSelector((state) => state.films)
 
   useEffect(() => {
@@ -14,25 +16,15 @@ export function CardsList () {
 
   function renderCards() {
     return (
-      films.map((film) => <Card key={film.kinopoiskId} {...film} ></Card>)
+      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} ></FilmCard>)
     )
   }
 
-  if (isLoaded) {
-    return (
-      <div className="loader-container">
-        <span className="loader"></span>
-      </div>
-    )
-  }
+  if (isLoaded) return <Loader />
 
-  if (error) {
-    return <Navigate to="/error" />
-  }
+  if (error) navigate('/error')
 
-  if (films.length == 0) {
-    return <div>No films</div>
-  }
+  if (films == undefined) return <div>No films</div>
 
   return (
     <div className="cards">

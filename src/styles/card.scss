@@ -39,6 +39,10 @@
     &_orange {
       background-color: $tetriaryOrange;
     }
+
+    &_hidden {
+      visibility: hidden;
+    }
   }
 
   &__rating {

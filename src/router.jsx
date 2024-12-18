@@ -5,9 +5,12 @@ import { Home } from '@/pages/Home'
 import { Films } from '@/pages/Films'
 import { Favorites } from '@/pages/Favorites'
 import { Trends } from '@/pages/Trends'
-import { FilmsSearch } from '@/pages/FilmsSearch'
+import { FoundFilms } from '@/pages/FoundFilms'
+import { FilteredFilms } from '@/pages/FilteredFilms'
 import { Film } from '@/pages/Film'
 import { ErrorPage } from '@/pages/ErrorPage'
+
+import { FilterForm } from '@/components/FilterForm'
 
 export const router = createBrowserRouter([
   {
@@ -35,7 +38,15 @@ export const router = createBrowserRouter([
           },
           {
 						path: 'search/:query/',
-						element: <FilmsSearch />,
+						element: <FoundFilms />,
+					},
+          {
+						path: 'filter',
+						element: <FilterForm />,
+					},
+          {
+						path: 'filter/:query',
+						element: <FilteredFilms />,
 					},
         ]
       },
