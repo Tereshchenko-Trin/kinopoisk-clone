@@ -5,13 +5,24 @@
 	padding: 16px 70px;
 	border: none;
 	border-radius: 10px;
-	background-color: $systemPrimary;
   color: $contextualWhite;
   @include desktopS1-3();
   transition: 0.2s;
+  
+  &_primary {
+    background-color: $systemPrimary;
+    
+    &:hover {
+      background-color: $systemPrimary2;
+    } 
+  }
 
-  &:hover {
-    background-color: $systemPrimary2;
+  &_secondary {
+    background-color: $backgroundGraphite;
+
+    &:hover {
+      background-color: $backgroundDark;
+    } 
   }
 }
 

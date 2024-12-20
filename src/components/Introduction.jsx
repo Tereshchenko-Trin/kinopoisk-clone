@@ -13,7 +13,7 @@ export function Introduction() {
       <div className="introduction__content">
         <h1 className="introduction__title">Movies and TV series without restrictions on pixema</h1>
         <NavLink to="home/films">
-          <Button type="button" className="introduction__button">Get started</Button>
+          <Button type="button" style="primary" className="introduction__button">Get started</Button>
         </NavLink>
       </div>
     </div>

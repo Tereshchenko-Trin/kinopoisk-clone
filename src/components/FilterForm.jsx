@@ -115,8 +115,8 @@ export function FilterForm () {
     </div>
 
     <div className="d-flex">
-      <Button type="reset">Clear filter</Button>
-      <Button type="submit">Show results</Button>
+      <Button type="reset" style="secondary">Clear filter</Button>
+      <Button type="submit" style="primary">Show results</Button>
     </div>
   </form>
   )
