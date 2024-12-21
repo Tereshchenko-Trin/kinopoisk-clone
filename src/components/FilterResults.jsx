@@ -1,11 +1,21 @@
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
+import { fetchFilterFilms } from '@/redux/films-slice'
 import { FilmCard } from '@/components/FilmCard'
 import { Loader } from '@/components/Loader'
+import { Pagination } from '@/components/Pagination'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function FilterResults() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { filterList: films, isLoaded, error } = useSelector((state) => state.filter) 
+  const { currentPage } = useParams()
+  const { filterList: films, filterData, isLoaded, error, pageCount } = useSelector((state) => state.films)
+
+  useEffect(() => {
+    dispatch(fetchFilterFilms({ ...filterData, currentPage }))
+  }, [dispatch, filterData, currentPage])
 
   function renderCards() {
     return (
@@ -15,7 +25,7 @@ export function FilterResults() {
 
   if (isLoaded) return <Loader />
 
-  if (error) navigate('/error')
+  if (error) navigate(pagesPaths.error)
 
   if (films == undefined) return <div>No films</div>
 
@@ -23,6 +33,10 @@ export function FilterResults() {
     <div className="cards">
       <div className="cards__container">
         {renderCards()}
+      </div>
+
+      <div className="pagination-container">
+        <Pagination currentPage={currentPage} pageCount={pageCount} />
       </div>
     </div>
   )

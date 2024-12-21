@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  &__item {
+    border-radius: 10px;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $backgroundGraphite;
+    }
+
+    &:active {
+      background-color: $backgroundDark;
+    }
+  }
+
+  &__link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $contextualWhite;
+    @include desktopS1-3();
+  }
+}

@@ -1,6 +1,6 @@
 import { Introduction } from '@/components/Introduction'
 
-export function GetStarted() {
+export function StartPage() {
   return (
     <Introduction />
   )

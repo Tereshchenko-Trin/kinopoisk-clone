@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { SearchForm } from '@/components/SearchForm'
 import { IconButton } from '@/components/shared/IconButton'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function Header() {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ export function Header() {
 
   return (
     <div className="header">
-      <NavLink to="/">
+      <NavLink to={pagesPaths.start}>
         <img className="header__logo" src={Logo} alt="logo" />
       </NavLink>
       <div className="header__interface">

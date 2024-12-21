@@ -1,19 +1,20 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { fetchFilterFilms } from '@/redux/filter-slice'
+import { setFilterFormData } from '@/redux/films-slice'
 import { Button } from '@/components/shared/Button'
 
 export function FilterForm () {
   const dispatch = useDispatch()
-  const { register, handleSubmit, reset } = useForm()
   const navigate = useNavigate()
+  const { register, handleSubmit, reset } = useForm()
 
 	const onSubmit = (data) => {
+    dispatch(setFilterFormData(data))
+    
     const query = new URLSearchParams(data).toString()
 
-    dispatch(fetchFilterFilms(data))
-		navigate(`/home/filter/${query}`)
+		navigate(`/home/filter/${query}/1`)
 	}
 
   return (

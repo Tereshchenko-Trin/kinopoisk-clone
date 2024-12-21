@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { fetchFilm, fetchFilmStaff, fetchFilmBoxOffice } from '@/redux/film-slice'
 import { FilmInfo } from '@/components/FilmInfo'
 import { Loader } from '@/components/Loader'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function Film() {
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ export function Film() {
 
   if (isLoading) return <Loader />
 
-  if (error) navigate('/error')
+  if (error) navigate(pagesPaths.error)
 
   if (!film) return <div>Film not found</div>
 
