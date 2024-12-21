@@ -8,53 +8,83 @@ import {
   renderWriters,
   renderBoxOffice
 } from '@/utils/helpersRender'
+import favorite from '@/assets/icons/iconFavorites.svg'
+import { className } from '@/utils/className'
+import { Button } from '@/components/shared/Button'
 
-export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo}) {
+export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, rating}) {
+  const kinopoiskRatingClassName = `film__rating_kinopoisk ${className ({
+    'rating_green': filmInfo.ratingKinopoisk >= 7.5 || rating >= 7.5,
+    'rating_yellow': (filmInfo.ratingKinopoisk < 7.5 && filmInfo.ratingKinopoisk >= 5) || (rating < 7.5 && rating >= 5),
+    'rating_orange': filmInfo.ratingKinopoisk < 5 || rating < 5,
+    'rating_hidden': filmInfo.ratingKinopoisk == null && rating == null,
+  })}`
+
+  const imdbRatingClassName = `film__rating_imdb ${className ({
+    'rating_hidden': filmInfo.ratingKinopoisk == null && rating == null,
+  })}`
+
+  const durationClassName = `film__rating_duration ${className ({
+    'duration_hidden': filmInfo.filmLength == null && rating == null,
+  })}`
+
+  const ratingsClassName = `film__ratings ${className ({
+    'film__ratings_hidden': 
+    kinopoiskRatingClassName.includes('hidden') && 
+    imdbRatingClassName.includes('hidden') && 
+    durationClassName.includes('hidden'),
+  })}`
+
   return (
     <div className="film">
-      <div className="film__poster">
-        <img src={filmInfo.posterUrl} alt="poster" />
+      <div className="film__info-container_left">
+        <div className="film__poster-container">
+          <img className="film__poster" src={filmInfo.posterUrl} alt="poster" />
+        </div>
+        <div className="film__buttons">
+          <Button style="secondary" className="film__favorites-button" type="button">
+            <img src={favorite} className="" />
+          </Button>
+        </div>
       </div>
-      <div className="film__buttons">
-      </div>
-      <div className="film__info-container">
+      <div className="film__info-container_right">
         <p className="film__genres">{renderGenres(filmInfo)}</p>
         <h1 className="film__title">{renderTitle(filmInfo)}</h1>
-        <div className="film__ratings">
-          <div className="film__rating_kinopoisk">{filmInfo.ratingKinopoisk}</div>
-          <div className="film__rating_imdb">{filmInfo.ratingImdb}</div>
-          <div className="film__ratings_duration">{filmInfo.filmLength}</div>
+        <div className={ratingsClassName}>
+          <div className={kinopoiskRatingClassName}><p>{filmInfo.ratingKinopoisk}</p></div>
+          <div className={imdbRatingClassName}><p>{filmInfo.ratingImdb}</p></div>
+          <div className={durationClassName}><p>{filmInfo.filmLength} min</p></div>
         </div>
         <p className="film__description">{filmInfo.description}</p>
         <table className="film__info">
           <tbody>
             <tr>
-              <td>Year</td>
-              <td>{filmInfo.year}</td>
+              <th>Year</th>
+              <td className="year">{filmInfo.year}</td>
             </tr>
             <tr>
-              <td>BoxOffice</td>
-              <td>{renderBoxOffice(boxOfficeInfo)}</td>
+              <th>BoxOffice</th>
+              <td className="box-office">{renderBoxOffice(boxOfficeInfo)}</td>
             </tr>
             <tr>
-              <td>Country</td>
-              <td>{renderCountries(filmInfo)}</td>
+              <th>Country</th>
+              <td className="country">{renderCountries(filmInfo)}</td>
             </tr>
             <tr>
-              <td>Actors</td>
-              <td>{renderActors(staffInfo)}</td>
+              <th>Actors</th>
+              <td className="actors">{renderActors(staffInfo)}</td>
             </tr>
             <tr>
-              <td>Director</td>
-              <td>{renderDirectors(staffInfo)}</td>
+              <th>Director</th>
+              <td className="directors">{renderDirectors(staffInfo)}</td>
             </tr>
             <tr>
-              <td>Producers</td>
-              <td>{renderProducers(staffInfo)}</td>
+              <th>Producers</th>
+              <td className="producers">{renderProducers(staffInfo)}</td>
             </tr>
             <tr>
-              <td>Writers</td>
-              <td>{renderWriters(staffInfo)}</td>
+              <th>Writers</th>
+              <td className="writers">{renderWriters(staffInfo)}</td>
             </tr>
           </tbody>
         </table>

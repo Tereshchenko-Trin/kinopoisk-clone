@@ -1,18 +1,21 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetchFilms } from '@/redux/films-slice'
 import { FilmCard } from '@/components/FilmCard'
+import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/Loader'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function FilmsList () {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { list: films, isLoaded, error } = useSelector((state) => state.films)
+  const { currentPage } = useParams()
+  const { list: films, isLoaded, error, pageCount } = useSelector((state) => state.films)
 
   useEffect(() => {
-    dispatch(fetchFilms())
-  }, [dispatch])
+    dispatch(fetchFilms({ currentPage }))
+  }, [dispatch, currentPage])
 
   function renderCards() {
     return (
@@ -22,7 +25,7 @@ export function FilmsList () {
 
   if (isLoaded) return <Loader />
 
-  if (error) navigate('/error')
+  if (error) navigate(pagesPaths.error)
 
   if (films == undefined) return <div>No films</div>
 
@@ -30,6 +33,10 @@ export function FilmsList () {
     <div className="cards">
       <div className="cards__container">
         {renderCards()}
+      </div>
+
+      <div className="pagination-container">
+        <Pagination currentPage={currentPage} pageCount={pageCount} />
       </div>
     </div>
   )

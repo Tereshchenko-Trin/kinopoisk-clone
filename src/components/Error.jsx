@@ -1,11 +1,12 @@
 import error from '@/assets/images/errorPage.avif'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/shared/Button'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function Error() {
   const navigate = useNavigate()
 
-  const handleClickButtonBack = () => { navigate('/') }
+  const handleClickButtonBack = () => { navigate(pagesPaths.start) }
 
   return (
     <div className="error">

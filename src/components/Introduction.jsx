@@ -1,6 +1,7 @@
 import Logo from '@/assets/icons/iconLogoDark.svg'
 import { NavLink } from 'react-router-dom'
 import { Button } from '@/components/shared/Button'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function Introduction() {
   return (
@@ -12,8 +13,8 @@ export function Introduction() {
       </div>
       <div className="introduction__content">
         <h1 className="introduction__title">Movies and TV series without restrictions on pixema</h1>
-        <NavLink to="home/films">
-          <Button type="button" className="introduction__button">Get started</Button>
+        <NavLink to={pagesPaths.films}>
+          <Button type="button" style="primary" className="introduction__button">Get started</Button>
         </NavLink>
       </div>
     </div>

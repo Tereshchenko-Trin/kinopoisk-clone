@@ -1,0 +1,129 @@
+.film {
+  max-width: 1185px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+
+  &__info-container {
+    &_left {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    &_right {
+      max-width: 879px;
+      width: 100%;
+    }
+  }
+
+  &__poster {
+    width: 266px;
+    height: 357px;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+	  background-position: center;
+	  background-size: contain;
+  }
+
+  &__genres {
+    @include desktopBody();
+    color: $contextualLight;
+  }
+
+  &__title {
+    @include tabletH1();
+    color: $contextualWhite;
+    margin-bottom: 24px;
+  }
+
+  &__ratings {
+    display: flex;
+    gap: 20px;
+    @include desktopS1-3();
+    color: $contextualWhite;
+    margin-bottom: 40px;
+
+    &_hidden {
+      display: none;
+    }
+  }
+
+  &__rating {
+    &_imdb {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    &_imdb::before {
+      content:'';
+      width: 32px;
+      height: 12px;
+      display: inline-block;
+      background-image: url('../assets/icons/iconImdb.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+
+    &_kinopoisk, &_imdb, &_duration {
+      padding: 2px 8px;
+      background-color: $backgroundGraphite;
+      border-radius: 6px;
+    }
+  }
+
+  &__description {
+    max-width: 879px;
+    width: 100%;
+    color: $contextualWhite;
+    @include desktopBody();
+    margin-bottom: 40px;
+  }
+
+  &__info {
+    table-layout: fixed;
+
+    &>tbody th {
+        padding: 0px 40px 20px 0px;
+        vertical-align: top;
+        color: $contextualLight;
+        @include desktopS1-3();
+    }
+  
+    &>tbody td {
+        padding: 0px 0px 20px 0px;
+        vertical-align: top;
+        color: $contextualWhite;
+        @include desktopBody();
+    }
+  }
+}
+
+.rating, .duration {
+  &_green {
+    background-color: $tetriaryGreen;
+  }
+
+  &_yellow {
+    background-color: $tetriaryYellow;
+  }
+
+  &_orange {
+    background-color: $tetriaryOrange;
+  }
+
+  &_hidden {
+    display: none;
+  }
+}
+
+// .actors {
+//   max-height: 72px;
+//   display: -webkit-box;
+//   -webkit-line-clamp: 3;
+// }

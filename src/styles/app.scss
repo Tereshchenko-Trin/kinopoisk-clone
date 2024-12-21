@@ -1,7 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
-@import '@/styles/fonts.scss';
-@import '@/styles/variables.scss';
-@import '@/styles/mixins.scss';
+@import '@/styles/_fonts.scss';
+@import '@/styles/_variables.scss';
+@import '@/styles/_mixins.scss';
 @import '@/styles/_resetStyles.scss';
 
 @import '@/styles/body.scss';
@@ -11,8 +11,10 @@
 @import '@/styles/getStarted.scss';
 @import '@/styles/error.scss';
 @import '@/styles/loader.scss';
+@import '@/styles/filmInfo.scss';
 
 @import '@/styles/header.scss';
 @import '@/styles/menu.scss';
-@import '@/styles/card.scss';
+@import '@/styles/filmCard.scss';
 @import '@/styles/buttons.scss';
+@import '@/styles/pagination.scss';
