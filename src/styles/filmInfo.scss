@@ -87,6 +87,7 @@
 
   &__info {
     table-layout: fixed;
+    margin-bottom: 56px;
 
     &>tbody th {
         padding: 0px 40px 20px 0px;
@@ -121,9 +122,3 @@
     display: none;
   }
 }
-
-// .actors {
-//   max-height: 72px;
-//   display: -webkit-box;
-//   -webkit-line-clamp: 3;
-// }

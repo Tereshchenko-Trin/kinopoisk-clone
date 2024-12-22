@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchFilms } from '@/redux/films-slice'
-import { FilmCard } from '@/components/FilmCard'
+import { FilmCard } from '@/components/shared/FilmCard'
 import { Pagination } from '@/components/Pagination'
-import { Loader } from '@/components/Loader'
+import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function FilmsList () {
@@ -19,7 +19,7 @@ export function FilmsList () {
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} ></FilmCard>)
+      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 

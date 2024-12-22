@@ -7,7 +7,7 @@ export function Introduction() {
   return (
     <div className="introduction">
       <div className="introduction__logo-container">
-        <NavLink to="/">
+        <NavLink to={pagesPaths.start}>
           <img className="introduction__logo" src={Logo} alt="logo" />
         </NavLink>
       </div>

@@ -9,10 +9,13 @@ import {
   renderBoxOffice
 } from '@/utils/helpersRender'
 import favorite from '@/assets/icons/iconFavorites.svg'
+import { SimilarFilms } from '@/components/SimilarFilms'
 import { className } from '@/utils/className'
 import { Button } from '@/components/shared/Button'
 
-export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, rating}) {
+export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}) {
+  const kinopoiskId = filmInfo.kinopoiskId || filmId
+
   const kinopoiskRatingClassName = `film__rating_kinopoisk ${className ({
     'rating_green': filmInfo.ratingKinopoisk >= 7.5 || rating >= 7.5,
     'rating_yellow': (filmInfo.ratingKinopoisk < 7.5 && filmInfo.ratingKinopoisk >= 5) || (rating < 7.5 && rating >= 5),
@@ -35,6 +38,8 @@ export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, rating}) {
     durationClassName.includes('hidden'),
   })}`
 
+  const handleClickButtonFavorite = () => {console.log('click')}
+
   return (
     <div className="film">
       <div className="film__info-container_left">
@@ -42,7 +47,7 @@ export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, rating}) {
           <img className="film__poster" src={filmInfo.posterUrl} alt="poster" />
         </div>
         <div className="film__buttons">
-          <Button style="secondary" className="film__favorites-button" type="button">
+          <Button style="secondary" className="film__favorites-button" type="button" onClick={handleClickButtonFavorite}>
             <img src={favorite} className="" />
           </Button>
         </div>
@@ -88,6 +93,8 @@ export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, rating}) {
             </tr>
           </tbody>
         </table>
+
+        <SimilarFilms kinopoiskId={kinopoiskId} />
       </div>
     </div>
   )

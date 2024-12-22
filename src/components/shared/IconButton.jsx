@@ -1,6 +1,7 @@
 import Arrow from '@/assets/icons/iconArrow.svg'
 import ArrowDown from '@/assets/icons/iconArrowDown.svg'
 import ArrowRight from '@/assets/icons/iconArrowRight.svg'
+import ArrowLeft from '@/assets/icons/iconArrowLeft.svg'
 import Check from '@/assets/icons/iconCheck.svg'
 import Close from '@/assets/icons/iconClose.svg'
 import Delete from '@/assets/icons/iconDelete.svg'
@@ -56,21 +57,37 @@ export function IconButton({ type, children, onClick }) {
             {children}
           </button>
         )
-
-    case 'arrowDown':
-      return (
-        <button type="button" className="icon-button" onClick={onClick}>
+        
+        case 'filter':
+          return (
+            <button type="button" className="icon-button icon-button_filter" onClick={onClick}>
+              <img src={Filter} alt="filter" className="icon icon_filter" />
+              {children}
+            </button>
+          )
+          
+        case 'arrowDown':
+          return (
+            <button type="button" className="icon-button" onClick={onClick}>
           <img src={ArrowDown} alt="arrow down" className="icon" />
           {children}
         </button>
       )
 
-    case 'filter':
-      return (
-        <button type="button" className="icon-button icon-button_filter" onClick={onClick}>
-          <img src={Filter} alt="filter" className="icon icon_filter" />
+        case 'arrowLeft':
+          return (
+            <button type="button" className="icon-button" onClick={onClick}>
+          <img src={ArrowLeft} alt="arrow left" className="icon" />
           {children}
         </button>
       )
-  }
+
+        case 'arrowRight':
+          return (
+            <button type="button" className="icon-button" onClick={onClick}>
+          <img src={ArrowRight} alt="arrow right" className="icon" />
+          {children}
+        </button>
+      )
+    }
 }

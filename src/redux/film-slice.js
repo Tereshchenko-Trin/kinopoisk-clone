@@ -1,10 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { requestFilm, requestFilmStaff, requestFilmBoxOffice } from '@/services/film'
+import { 
+  requestFilm, 
+  requestFilmStaff, 
+  requestFilmBoxOffice, 
+  requestFilmSimilar
+} from '@/services/film'
 
 const initialState = {
   data: null,
   staffList: [],
   boxOffice: [],
+  similarList: [],
   isLoaded: false,
   error: null
 }
@@ -32,6 +38,17 @@ export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (fil
 export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', async (kinopoiskId, { rejectWithValue }) => {
   const data = await requestFilmBoxOffice(kinopoiskId)
 
+  if (data.hasError) {
+    return (rejectWithValue(data))
+  }
+
+  return data
+})
+
+export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async (kinopoiskId, { rejectWithValue }) => {
+  const data = await requestFilmSimilar(kinopoiskId)
+
+  console.log(data.items)
   if (data.hasError) {
     return (rejectWithValue(data))
   }
@@ -81,6 +98,19 @@ export const filmSlice = createSlice({
         state.boxOffice = action.payload.items
       })
       .addCase(fetchFilmBoxOffice.rejected, (state, action) => {
+        state.isLoaded = false
+        state.error = action.error.message
+      })
+
+      .addCase(fetchFilmSimilar.pending, (state) => {
+        state.isLoaded = true
+        state.error = null
+      })
+      .addCase(fetchFilmSimilar.fulfilled, (state, action) => {
+        state.isLoaded = false
+        state.similarList = action.payload.items
+      })
+      .addCase(fetchFilmSimilar.rejected, (state, action) => {
         state.isLoaded = false
         state.error = action.error.message
       })

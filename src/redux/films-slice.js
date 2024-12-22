@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { requestFilms, requestFilmsSearch, requestFilterFilms } from '@/services/films'
+import { requestFilms, requestFilmsSearch, requestFilmsFilter } from '@/services/films'
 
 const initialState = {
   list: [],
@@ -27,12 +27,11 @@ export const fetchFilmsSearch = createAsyncThunk('films/fetchFilmsSearch', async
   return data
 })
 
-export const fetchFilterFilms = createAsyncThunk('films/fetchFilterFilms', async (params = {}) => {
+export const fetchFilmsFilter = createAsyncThunk('films/fetchFilmsFilter', async (params = {}) => {
   const page = params.currentPage
-  const data = await requestFilterFilms({ page, ...params })
+  const data = await requestFilmsFilter({ page, ...params })
 
 	console.log(data.items)
-	console.log(page, params)
   return data
 })
 
@@ -77,17 +76,17 @@ export const filmsSlice = createSlice({
         state.error = action.error.message
       })
 
-      .addCase(fetchFilterFilms.pending, (state) => {
+      .addCase(fetchFilmsFilter.pending, (state) => {
 				state.isLoaded = true
 				state.error = null
 			})
-			.addCase(fetchFilterFilms.fulfilled, (state, action) => {
+			.addCase(fetchFilmsFilter.fulfilled, (state, action) => {
 				state.isLoaded = false
 				state.filterList = action.payload.items
         state.pageCount = action.payload.totalPages
         console.log(action.payload)
 			})
-			.addCase(fetchFilterFilms.rejected, (state, action) => {
+			.addCase(fetchFilmsFilter.rejected, (state, action) => {
 				state.isLoaded = false
 				state.error = action.error.message
 			})
