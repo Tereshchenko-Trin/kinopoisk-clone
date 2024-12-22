@@ -2,9 +2,10 @@ import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { StartPage } from '@/pages/StartPage'
 import { Home } from '@/pages/Home'
-import { Films } from '@/pages/Films'
-import { Trends } from '@/pages/Trends'
-import { Favorites } from '@/pages/Favorites'
+import { HomeFilms } from '@/pages/HomeFilms'
+import { TrendsFilms } from '@/pages/TrendsFilms'
+import { NewFilms } from '@/pages/NewFilms'
+import { FavoritesFilms } from '@/pages/FavoritesFilms'
 import { Settings } from '@/pages/Settings'
 import { FoundFilms } from '@/pages/FoundFilms'
 import { FilteredFilms } from '@/pages/FilteredFilms'
@@ -31,15 +32,19 @@ export const router = createBrowserRouter([
           },
           {
 						path: 'films/:currentPage',
-						element: <Films />,
+						element: <HomeFilms />,
 					},
           {
-            path: 'trends/',
-            element: <Trends />,
+            path: 'trends/:currentPage',
+            element: <TrendsFilms />,
+          },
+          {
+            path: 'new/:currentPage',
+            element: <NewFilms />,
           },
           {
 						path: 'favorites/',
-						element: <Favorites />,
+						element: <FavoritesFilms />,
 					},
           {
 						path: 'settings/',

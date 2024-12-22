@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useParams } from 'react-router-dom'
-import { BuildeShemePagination } from '@/utils/buildShemePagination'
+import { buildeShemePagination } from '@/utils/buildShemePagination'
 
 export function Pagination({ currentPage, pageCount }) {
   const location = useLocation()
@@ -14,7 +14,9 @@ export function Pagination({ currentPage, pageCount }) {
   }
 
   function renderPaginationItems() {
-		const scheme = BuildeShemePagination(currentPage, pageCount)
+		const scheme = buildeShemePagination(currentPage, pageCount)
+
+    if(scheme == null) return null
 
 		return scheme.map((item, index) => {
 			return (

@@ -7,11 +7,11 @@ import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 
-export function FilmsList () {
+export function HomeFilmsList () {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { currentPage } = useParams()
-  const { list: films, isLoaded, error, pageCount } = useSelector((state) => state.films)
+  const { homeList: films, isLoaded, error, pageCount } = useSelector((state) => state.films)
 
   useEffect(() => {
     dispatch(fetchFilms({ currentPage }))

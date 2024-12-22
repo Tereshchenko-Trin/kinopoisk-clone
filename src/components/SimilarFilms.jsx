@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchFilmSimilar } from '@/redux/film-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
@@ -9,8 +9,6 @@ import { className } from '@/utils/className'
 export function SimilarFilms({ kinopoiskId }) {
   const dispatch = useDispatch()
   const containerRef = useRef(null)
-  const [ canScrollLeft, setCanScrollLeft ] = useState(false)
-  const [ canScrollRight, setCanScrollRight ] = useState(false)
   const { similarList: films, isLoaded, error } = useSelector((state) => state.film)
   
   useEffect(() => {
@@ -23,28 +21,9 @@ export function SimilarFilms({ kinopoiskId }) {
     )
   }
 
-  function checkForScrollPosition() {
-    const {current} = containerRef
-    if (current) {
-      const { scrollLeft, scrollWidth, clientWidth } = current
-      setCanScrollLeft(scrollLeft > 0)
-      setCanScrollRight(scrollLeft !== scrollWidth - clientWidth)
-    }
-  }
-
   const handleClickArrow = (distance) => {
     containerRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
   }
-
-  useEffect(() => {
-    const {current} = containerRef
-    checkForScrollPosition(current)
-    current?.addEventListener('scroll', checkForScrollPosition(current))
-
-    return () => {
-      current?.removeEventListener('scroll', checkForScrollPosition())
-    }
-  }, [])
   
   if (isLoaded) return <Loader />
   
@@ -57,8 +36,8 @@ export function SimilarFilms({ kinopoiskId }) {
       <div className="similar__header">
         <h2 className="similar__title">Recommendations</h2>
         <div className="similar__pagination">
-          <IconButton type="arrowLeft" disabled={!canScrollLeft} onClick={() => handleClickArrow(-300)} />
-          <IconButton type="arrowRight" disabled={!canScrollRight} onClick={() => handleClickArrow(300)} />
+          <IconButton type="arrowLeft" onClick={() => handleClickArrow(-300)} />
+          <IconButton type="arrowRight" onClick={() => handleClickArrow(300)} />
         </div>
       </div>
       <div ref={containerRef} className="similar__container">

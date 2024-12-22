@@ -61,16 +61,8 @@
     color: $systemPrimary2;
   }
   
-  &>.icon:hover {
-    filter: var(--system-primary2);
-  }
-  
   &:active{
     color: $systemPrimary;
-  } 
-  
-  &>.icon:active {
-    filter: var(--system-primary);
   }
 }
 
@@ -78,8 +70,23 @@
   margin-right: 20px;
   filter: var(--system-secondary);
 
-  &_user, &_filter {
+  &_user,
+  &_filter,
+  &_arrowLeft,
+  &_arrowRight {
     margin-right: 0px;
     filter: var(--contextual-white);
+  }
+
+  &:hover {
+    filter: var(--system-primary2);
+  }
+  
+  &:active {
+    filter: var(--system-primary);
+  }
+
+  &:disabled {
+    filter: var(--system-secondary);
   }
 }

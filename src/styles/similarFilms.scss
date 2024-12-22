@@ -25,9 +25,11 @@
   }
 
   &__container {
+    min-width: 100%;
     display: flex;
     gap: 40px;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
 
     &::-webkit-scrollbar {
       display: none;

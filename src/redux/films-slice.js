@@ -1,10 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { requestFilms, requestFilmsSearch, requestFilmsFilter } from '@/services/films'
+import { 
+  requestFilms,
+  requestFilmsNew, 
+  requestFilmsSearch, 
+  requestFilmsFilter 
+} from '@/services/films'
 
 const initialState = {
-  list: [],
+  homeList: [],
   searchList: [],
   filterList: [],
+  trendsList: [],
+  newList: [],
   pageCount: null,
   isLoaded: false,
   error: null,
@@ -16,6 +23,21 @@ export const fetchFilms = createAsyncThunk('films/fetchFilms', async (params = {
   const data = await requestFilms({ page, ...params })
 
   console.log(data.items)
+  return data
+})
+
+export const fetchFilmsTrends = createAsyncThunk('films/fetchFilmsTrends', async (params = {}) => {
+  const page = params.currentPage
+  const data = await requestFilmsFilter({ page, ...params })
+
+	console.log(data.items)
+  return data
+})
+
+export const fetchFilmsNew = createAsyncThunk('films/fetchFilmsNew', async (params = {}) => {
+  const data = await requestFilmsNew({ ...params })
+
+	console.log(data.items)
   return data
 })
 
@@ -52,10 +74,38 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.list = action.payload.items
+        state.homeList = action.payload.items
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchFilms.rejected, (state, action) => {
+        state.isLoaded = false
+        state.error = action.error.message
+      })
+
+      .addCase(fetchFilmsTrends.pending, (state) => {
+        state.isLoaded = true
+        state.error = null
+      })
+      .addCase(fetchFilmsTrends.fulfilled, (state, action) => {
+        state.isLoaded = false
+        state.trendsList = action.payload.items
+        state.pageCount = action.payload.totalPages
+      })
+      .addCase(fetchFilmsTrends.rejected, (state, action) => {
+        state.isLoaded = false
+        state.error = action.error.message
+      })
+
+      .addCase(fetchFilmsNew.pending, (state) => {
+        state.isLoaded = true
+        state.error = null
+      })
+      .addCase(fetchFilmsNew.fulfilled, (state, action) => {
+        state.isLoaded = false
+        state.newList = action.payload.items
+        state.pageCount = action.payload.totalPages
+      })
+      .addCase(fetchFilmsNew.rejected, (state, action) => {
         state.isLoaded = false
         state.error = action.error.message
       })

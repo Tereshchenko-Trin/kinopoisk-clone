@@ -12,6 +12,9 @@ export function Menu() {
 				<NavLink to={pagesPaths.trends}>
          <IconButton type="trends">Trends</IconButton>
 				</NavLink>
+				<NavLink to={pagesPaths.new}>
+          <IconButton type="new">New</IconButton>
+				</NavLink>
 				<NavLink to={pagesPaths.favorites}>
           <IconButton type="favorites">Favorites</IconButton>
 				</NavLink>

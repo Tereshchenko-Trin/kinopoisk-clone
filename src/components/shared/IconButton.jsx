@@ -5,20 +5,21 @@ import ArrowLeft from '@/assets/icons/iconArrowLeft.svg'
 import Check from '@/assets/icons/iconCheck.svg'
 import Close from '@/assets/icons/iconClose.svg'
 import Delete from '@/assets/icons/iconDelete.svg'
+import Home from '@/assets/icons/iconHome.svg'
+import Trends from '@/assets/icons/iconTrends.svg'
+import New from '@/assets/icons/iconNew.svg'
 import Favorites from '@/assets/icons/iconFavorites.svg'
 import Filter from '@/assets/icons/iconFilter.svg'
-import Home from '@/assets/icons/iconHome.svg'
 import Menu from '@/assets/icons/iconMenu.svg'
 import Settings from '@/assets/icons/iconSettings.svg'
 import Share from '@/assets/icons/iconShare.svg'
-import Trends from '@/assets/icons/iconTrends.svg'
 import User from '@/assets/icons/iconUser.svg'
 
 export function IconButton({ type, children, onClick }) {
   switch (type) {
     case 'home':
       return (
-        <button type="button" className="icon-button" onClick={onClick}>
+        <button type="button" className="icon-button" onClick={onClick} >
           <img src={Home} alt="home" className="icon" />
           {children}
         </button>
@@ -28,6 +29,14 @@ export function IconButton({ type, children, onClick }) {
       return (
         <button type="button" className="icon-button" onClick={onClick}>
           <img src={Trends} alt="trends" className="icon" />
+          {children}
+        </button>
+      )
+
+    case 'new':
+      return (
+        <button type="button" className="icon-button" onClick={onClick}>
+          <img src={New} alt="new" className="icon" />
           {children}
         </button>
       )
@@ -69,7 +78,7 @@ export function IconButton({ type, children, onClick }) {
         case 'arrowDown':
           return (
             <button type="button" className="icon-button" onClick={onClick}>
-          <img src={ArrowDown} alt="arrow down" className="icon" />
+          <img src={ArrowDown} alt="arrow down" className="icon icon_arrowDawn" />
           {children}
         </button>
       )
@@ -77,7 +86,7 @@ export function IconButton({ type, children, onClick }) {
         case 'arrowLeft':
           return (
             <button type="button" className="icon-button" onClick={onClick}>
-          <img src={ArrowLeft} alt="arrow left" className="icon" />
+          <img src={ArrowLeft} alt="arrow left" className="icon icon_arrowLeft" />
           {children}
         </button>
       )
@@ -85,7 +94,7 @@ export function IconButton({ type, children, onClick }) {
         case 'arrowRight':
           return (
             <button type="button" className="icon-button" onClick={onClick}>
-          <img src={ArrowRight} alt="arrow right" className="icon" />
+          <img src={ArrowRight} alt="arrow right" className="icon icon_arrowRight" />
           {children}
         </button>
       )
