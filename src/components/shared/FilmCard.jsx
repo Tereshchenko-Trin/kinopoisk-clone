@@ -9,7 +9,7 @@ export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOri
     'card__rating-container_hidden': ratingKinopoisk == null && rating == null,
   })}`
 
-  const path = (kinopoiskId) ? `/home/${kinopoiskId}` : `/home/${filmId}`
+  const path = (kinopoiskId) ? `/main/${kinopoiskId}` : `/main/${filmId}`
 
   function renderTitle(name) {
     if (name) {

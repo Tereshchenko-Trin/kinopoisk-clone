@@ -1,9 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { StartPage } from '@/pages/StartPage'
-import { Home } from '@/pages/Home'
+import { Main } from '@/pages/Main'
 import { HomeFilms } from '@/pages/HomeFilms'
 import { TrendsFilms } from '@/pages/TrendsFilms'
+import { TopFilms } from '@/pages/TopFilms'
+import { TopSeries } from '@/pages/TopSeries'
 import { NewFilms } from '@/pages/NewFilms'
 import { FavoritesFilms } from '@/pages/FavoritesFilms'
 import { Settings } from '@/pages/Settings'
@@ -23,21 +25,29 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/home',
-        element: <Home />,
+        path: '/main',
+        element: <Main />,
         children: [
           {
             path: ':filmId',
             element: <Film />
           },
           {
-						path: 'films/:currentPage',
+						path: 'home/:currentPage',
 						element: <HomeFilms />,
 					},
           {
             path: 'trends/:currentPage',
             element: <TrendsFilms />,
           },
+          {
+						path: 'top-films/:currentPage',
+						element: <TopFilms />,
+					},
+          {
+						path: 'top-series/:currentPage',
+						element: <TopSeries />,
+					},
           {
             path: 'new/:currentPage',
             element: <NewFilms />,

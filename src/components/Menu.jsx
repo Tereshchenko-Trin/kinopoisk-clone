@@ -6,8 +6,14 @@ export function Menu() {
   return (
     <div className="menu">
 			<nav className="menu__nav-list">
-				<NavLink to={pagesPaths.films}>
+				<NavLink to={pagesPaths.home}>
 					<IconButton type="home">Home</IconButton>
+				</NavLink>
+				<NavLink to={pagesPaths.films}>
+					<IconButton type="top">Films</IconButton>
+				</NavLink>
+				<NavLink to={pagesPaths.series}>
+					<IconButton type="top">Series</IconButton>
 				</NavLink>
 				<NavLink to={pagesPaths.trends}>
          <IconButton type="trends">Trends</IconButton>

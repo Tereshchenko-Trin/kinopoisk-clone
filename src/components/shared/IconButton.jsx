@@ -6,6 +6,7 @@ import Check from '@/assets/icons/iconCheck.svg'
 import Close from '@/assets/icons/iconClose.svg'
 import Delete from '@/assets/icons/iconDelete.svg'
 import Home from '@/assets/icons/iconHome.svg'
+import Top from '@/assets/icons/iconTop.svg'
 import Trends from '@/assets/icons/iconTrends.svg'
 import New from '@/assets/icons/iconNew.svg'
 import Favorites from '@/assets/icons/iconFavorites.svg'
@@ -21,6 +22,14 @@ export function IconButton({ type, children, onClick }) {
       return (
         <button type="button" className="icon-button" onClick={onClick} >
           <img src={Home} alt="home" className="icon" />
+          {children}
+        </button>
+      )
+
+    case 'top':
+      return (
+        <button type="button" className="icon-button" onClick={onClick} >
+          <img src={Top} alt="top" className="icon" />
           {children}
         </button>
       )

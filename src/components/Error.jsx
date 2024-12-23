@@ -12,7 +12,7 @@ export function Error() {
     <div className="error">
       <img src={error} alt="error" className="error__image"/>
       <p className="error__message">Oops... Something went wrong. Please, try again later.</p>
-      <Button type="button" className="error__button" onClick={handleClickButtonBack}>Return to home page</Button>
+      <Button type="button" style="primary" className="error__button" onClick={handleClickButtonBack}>Return to main page</Button>
     </div>
   )
 }

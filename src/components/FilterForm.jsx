@@ -14,7 +14,7 @@ export function FilterForm () {
     
     const query = new URLSearchParams(data).toString()
 
-		navigate(`/home/filter/${query}/1`)
+		navigate(`/main/filter/${query}/1`)
 	}
 
   return (

@@ -14,7 +14,7 @@ export function SearchForm() {
 		event.preventDefault()
 
 		const encodedQuery = encodeURIComponent(query)
-		navigate(`/home/search/${encodedQuery}/1`)
+		navigate(`/main/search/${encodedQuery}/1`)
 	}
 
 	return (
