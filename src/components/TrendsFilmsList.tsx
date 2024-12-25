@@ -1,29 +1,33 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchTopSeries } from '@/redux/films-slice'
+import { fetchFilmsTrends } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
 import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
+import { ITrendsParams } from '@/types/fetchParamsTypes'
+import { ITrendsList } from '@/types/filmDataTypes'
 
-export function TopSeriesList() {
+export function TrendsFilmsList () {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { currentPage } = useParams()
-  const { topSeriesList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
+  const { trendsList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
-    const data = {
-      type: 'TOP_250_TV_SHOWS'
+    const trendsCriteria: ITrendsParams = {
+      order: 'NUM_VOTE',
+      ratingFrom: 8,
+      yearFrom: new Date().getFullYear() - 1,
     }
 
-    dispatch(fetchTopSeries({ ...data, currentPage }))
+    dispatch(fetchFilmsTrends({ ...trendsCriteria, currentPage }))
   }, [dispatch, currentPage])
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} />)
+      films.map((film: ITrendsList) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 

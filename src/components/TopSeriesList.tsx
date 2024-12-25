@@ -1,25 +1,26 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
-import { useNavigate } from 'react-router-dom'
-import { fetchFilmsNew } from '@/redux/films-slice'
+import { useNavigate, useParams } from 'react-router-dom'
+import { fetchTopSeries } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
+import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
-import { getMonth } from '@/utils/getMounth'
+import { ITopSeriesParams } from '@/types/fetchParamsTypes'
 
-export function NewFilmsList () {
+export function TopSeriesList() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { newList: films, isLoaded, error } = useAppSelector((state) => state.films)
+  const { currentPage } = useParams()
+  const { topSeriesList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
-    const newCriteria = {
-      year: new Date().getFullYear(),
-      month: getMonth(),
+    const data: ITopSeriesParams = {
+      type: 'TOP_250_TV_SHOWS'
     }
 
-    dispatch(fetchFilmsNew({ ...newCriteria }))
-  }, [dispatch])
+    dispatch(fetchTopSeries({ ...data, currentPage }))
+  }, [dispatch, currentPage])
 
   function renderCards() {
     return (
@@ -37,6 +38,10 @@ export function NewFilmsList () {
     <div className="cards">
       <div className="cards__container">
         {renderCards()}
+      </div>
+
+      <div className="pagination-container">
+        <Pagination currentPage={currentPage} pageCount={pageCount} />
       </div>
     </div>
   )

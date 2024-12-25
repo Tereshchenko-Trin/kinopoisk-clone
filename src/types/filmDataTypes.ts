@@ -1,8 +1,8 @@
-interface ICountry {
+export interface ICountry {
   country: string
 }
 
-interface IGenres {
+export interface IGenres {
   genre: string
 }
 

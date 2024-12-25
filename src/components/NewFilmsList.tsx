@@ -1,27 +1,26 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
-import { useNavigate, useParams } from 'react-router-dom'
-import { fetchFilmsTrends } from '@/redux/films-slice'
+import { useNavigate } from 'react-router-dom'
+import { fetchFilmsNew } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
-import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
+import { getMonth } from '@/utils/getMounth'
+import { INewFilmsParams } from '@/types/fetchParamsTypes'
 
-export function TrendsFilmsList () {
+export function NewFilmsList () {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { currentPage } = useParams()
-  const { trendsList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
+  const { newList: films, isLoaded, error } = useAppSelector((state) => state.films)
 
   useEffect(() => {
-    const trendsCriteria = {
-      order: 'NUM_VOTE',
-      ratingFrom: 8,
-      yearFrom: new Date().getFullYear() - 1,
+    const newCriteria: INewFilmsParams = {
+      year: new Date().getFullYear(),
+      month: getMonth(),
     }
 
-    dispatch(fetchFilmsTrends({ ...trendsCriteria, currentPage }))
-  }, [dispatch, currentPage])
+    dispatch(fetchFilmsNew({ ...newCriteria }))
+  }, [dispatch])
 
   function renderCards() {
     return (
@@ -39,10 +38,6 @@ export function TrendsFilmsList () {
     <div className="cards">
       <div className="cards__container">
         {renderCards()}
-      </div>
-
-      <div className="pagination-container">
-        <Pagination currentPage={currentPage} pageCount={pageCount} />
       </div>
     </div>
   )

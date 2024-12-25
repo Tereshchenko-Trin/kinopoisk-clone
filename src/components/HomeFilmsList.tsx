@@ -1,25 +1,26 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchFilmsFilter } from '@/redux/films-slice'
+import { fetchFilms } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
-import { Loader } from '@/components/shared/Loader'
 import { Pagination } from '@/components/Pagination'
+import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
+import { IHomeList } from '@/types/filmDataTypes'
 
-export function FilterResults() {
+export function HomeFilmsList () {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { currentPage } = useParams()
-  const { filterList: films, filterData, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
+  const { currentPage } = useParams<string>()
+  const { homeList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
-    dispatch(fetchFilmsFilter({ ...filterData, currentPage }))
-  }, [dispatch, filterData, currentPage])
+    dispatch(fetchFilms({ currentPage }))
+  }, [dispatch, currentPage])
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} ></FilmCard>)
+      films.map((film: IHomeList) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 

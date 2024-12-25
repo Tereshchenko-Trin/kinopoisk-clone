@@ -1,8 +1,9 @@
 import { NavLink, useLocation, useParams } from 'react-router-dom'
 import { buildeShemePagination } from '@/utils/buildShemePagination'
 import { getPath } from '@/config/pagesPaths'
+import { IPaginationProps } from '@/types/propTypes'
 
-export function Pagination({ currentPage, pageCount }) {
+export function Pagination({ currentPage, pageCount }: IPaginationProps) {
   const { pathname } = useLocation()
   const { query } = useParams()
 
@@ -11,7 +12,7 @@ export function Pagination({ currentPage, pageCount }) {
 
     if(scheme == null) return null
 
-		return scheme.map((item, index) => {
+		return scheme.map((item: number | string, index: number) => {
 			return (
 				<li className="pagination__item" key={index}>
           {item == '...' ?

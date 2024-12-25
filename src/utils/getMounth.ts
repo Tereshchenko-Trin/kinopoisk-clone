@@ -1,4 +1,4 @@
-export function getMonth() {
+export function getMonth(): string {
   let month = ''
 
   switch(new Date().getMonth()) {
@@ -38,4 +38,6 @@ export function getMonth() {
     case 11:
       return month = 'DECEMBER'
   }
+
+  return month
 }

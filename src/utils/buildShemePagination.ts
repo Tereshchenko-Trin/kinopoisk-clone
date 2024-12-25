@@ -1,4 +1,4 @@
-export function buildeShemePagination(currentPage, pageCount) {
+export function buildeShemePagination(currentPage: string, pageCount: number): number[] | null {
   const prevPageNumber = +currentPage - 1 // предполагаемая предыдущая страница, может получиться отрицательной
   const nextPageNumber = +currentPage + 1 // предполагаемая следующая страница, может получиться больше максимальной
   const scheme = [1, prevPageNumber, +currentPage, nextPageNumber, pageCount] // строим схему

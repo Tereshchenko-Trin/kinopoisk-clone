@@ -26,7 +26,7 @@ export function Film() {
 
   return (
     <>
-      <FilmInfo key={film.id} filmInfo={{ ...film }} staffInfo={[ ...staffList ]} boxOfficeInfo={[ ...boxOffice ]} />
+      <FilmInfo key={film.id} filmInfo={{ ...film }} staffInfo={[ ...staffList ]} boxOfficeInfo={[ ...[boxOffice] ]} />
     </>
   )
 }

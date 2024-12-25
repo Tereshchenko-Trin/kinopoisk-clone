@@ -1,13 +1,11 @@
 import { useAppSelector } from '@/hooks/useStore'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { FilmCard } from '@/components/shared/FilmCard'
-import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function FavoritesFilmsList () {
   const navigate = useNavigate()
-  // const { currentPage } = useParams()
   const { favoritesList: films, isLoaded, error } = useAppSelector((state) => state.film)
 
   function renderCards() {
@@ -27,10 +25,6 @@ export function FavoritesFilmsList () {
       <div className="cards__container">
         {renderCards()}
       </div>
-
-      {/* <div className="pagination-container">
-        <Pagination currentPage={currentPage} pageCount={pageCount} />
-      </div> */}
     </div>
   )
 }

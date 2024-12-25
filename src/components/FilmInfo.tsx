@@ -11,8 +11,9 @@ import {
 import { FavoriteFeat } from '@/components/FavoriteFeat'
 import { SimilarFilms } from '@/components/SimilarFilms'
 import { className } from '@/utils/className'
+import { IFilmInfoProp } from '@/types/propTypes'
 
-export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}) {
+export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}: IFilmInfoProp) {
   const kinopoiskId = filmInfo.kinopoiskId || filmId
 
   const kinopoiskRatingClassName = `film__rating_kinopoisk ${className ({

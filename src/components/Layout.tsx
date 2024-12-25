@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { Header } from '@/components/Header'
 import { Container } from '@/components/shared/Container'
 import { Main } from '@/components/shared/Main'
-import { ScrollToTop } from '@/components/shared/scrollToTop'
+import { ScrollToTop } from '@/components/shared/ScrollToTop'
 
 export function Layout() {
   return (

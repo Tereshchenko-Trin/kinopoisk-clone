@@ -1,15 +1,16 @@
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '@/hooks/useStore'
 import { setFilterFormData } from '@/redux/films-slice'
 import { Button } from '@/components/shared/Button'
+import { IFilterData } from '@/types/IFilterData'
 
 export function FilterForm () {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { register, handleSubmit, reset } = useForm()
+  const { register, handleSubmit, reset } = useForm<IFilterData>()
 
-	const onSubmit = (data) => {
+	const onSubmit: SubmitHandler<IFilterData> = (data) => {
     dispatch(setFilterFormData(data))
     
     const query = new URLSearchParams(data).toString()
@@ -21,7 +22,7 @@ export function FilterForm () {
     <form className="filter" onSubmit={handleSubmit(onSubmit)}>
 
       <div className="col-6">
-        <label className="form-label">Sort by</label>
+        <label className="form-label" htmlFor="order" >Sort by</label>
         <select className="form-control" { ...register('order')} >
           <option value="RATING">Rating</option>
           <option value="YEAR">Year</option>
@@ -30,7 +31,7 @@ export function FilterForm () {
       </div>
 
       <div className="col-6">
-        <label className="form-label">Type</label>
+        <label className="form-label" htmlFor="type" >Type</label>
         <select className="form-control" { ...register('type')} >
           <option value="ALL">All</option>
           <option value="FILM">Film</option>
@@ -41,7 +42,7 @@ export function FilterForm () {
       </div>
 
       <div className="col-6">
-        <label className="form-label">Full or short movie name</label>
+        <label className="form-label" htmlFor="keyword">Full or short movie name</label>
         <input 
           type="text"
           className="form-control"
@@ -69,7 +70,6 @@ export function FilterForm () {
           <label className="form-label" htmlFor="ratingTo" />
           <input 
             type="number" 
-            name="ratingTo" 
             id="ratingTo" 
             className="form-control" 
             placeholder="To" 
@@ -87,7 +87,6 @@ export function FilterForm () {
         <label className="form-label" htmlFor="ratingFrom">Years</label>
         <input 
           type="number" 
-          name="yearFrom" 
           id="yearFrom" 
           className="form-control" 
           placeholder="From" 
@@ -102,7 +101,6 @@ export function FilterForm () {
         <label className="form-label" htmlFor="yearTo"></label>
         <input 
           type="number" 
-          name="yearTo" 
           id="yearTo" 
           className="form-control" 
           placeholder="To" 

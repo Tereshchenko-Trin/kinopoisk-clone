@@ -4,16 +4,16 @@ import { useNavigate, useParams } from 'react-router-dom'
 export function SearchForm() {
 	const navigate = useNavigate()
 	const { query: queryParam } = useParams()
-	const [query, setQuery] = useState(queryParam)
+	const [query, setQuery] = useState<string>(queryParam)
 
-	const handleChange = (event) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(event.target.value)
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
 
-		const encodedQuery = encodeURIComponent(query)
+		const encodedQuery: string = encodeURIComponent(query)
 		navigate(`/main/search/${encodedQuery}/1`)
 	}
 

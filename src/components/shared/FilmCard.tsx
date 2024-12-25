@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { className } from '@/utils/className'
+import { IFilmCardProp } from '@/types/propTypes'
+import { IGenres } from '@/types/filmDataTypes'
 
-export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOriginal, nameRu, genres, posterUrl }) {
+export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOriginal, nameRu, genres, posterUrl }: IFilmCardProp) {
   const ratingContainerClassName = `card__rating-container ${className ({
     'card__rating-container_green': ratingKinopoisk >= 7.5 || rating >= 7.5,
     'card__rating-container_yellow': (ratingKinopoisk < 7.5 && ratingKinopoisk >= 5) || (rating < 7.5 && rating >= 5),
@@ -11,7 +13,7 @@ export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOri
 
   const path = (kinopoiskId) ? `/main/${kinopoiskId}` : `/main/${filmId}`
 
-  function renderTitle(name) {
+  function renderTitle(name: string | null) {
     if (name) {
       return <p className="card__title">{nameOriginal}</p>
     } else {
@@ -19,7 +21,7 @@ export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOri
     }
   } 
 
-  function renderRating(ratingKinopoisk) {
+  function renderRating(ratingKinopoisk: number) {
     if (ratingKinopoisk) {
       return <p className="card__rating">{ratingKinopoisk}</p>
     } else {
@@ -27,7 +29,7 @@ export function FilmCard({ ratingKinopoisk, rating, kinopoiskId, filmId, nameOri
     }
   } 
 
-  function renderGenres(genres) {
+  function renderGenres(genres: IGenres[]) {
     if (!genres) return null
 
     const filmGenres = genres.map((item) => item.genre).join(' · ')

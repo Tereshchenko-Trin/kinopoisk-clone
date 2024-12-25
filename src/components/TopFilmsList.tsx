@@ -1,25 +1,31 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchFilms } from '@/redux/films-slice'
+import { fetchTopFilms } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
 import { Pagination } from '@/components/Pagination'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
+import { ITopFilmsParams } from '@/types/fetchParamsTypes'
+import { ITopFilmsList } from '@/types/filmDataTypes'
 
-export function HomeFilmsList () {
+export function TopFilmsList() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { currentPage } = useParams()
-  const { homeList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
+  const { topFilmsList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
-    dispatch(fetchFilms({ currentPage }))
+    const data: ITopFilmsParams = {
+      type: 'TOP_250_MOVIES'
+    }
+
+    dispatch(fetchTopFilms({ ...data, currentPage }))
   }, [dispatch, currentPage])
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} />)
+      films.map((film: ITopFilmsList) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 
