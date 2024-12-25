@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@/hooks/useStore'
 import { setFilterFormData } from '@/redux/films-slice'
 import { Button } from '@/components/shared/Button'
 
 export function FilterForm () {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { register, handleSubmit, reset } = useForm()
 

@@ -1,10 +1,10 @@
 import favorite from '@/assets/icons/iconFavorites.svg'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@/hooks/useStore'
 import { isFavorite } from '@/redux/film-slice'
 import { Button } from '@/components/shared/Button'
 
 export function FavoriteFeat({ kinopoiskId }) {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleClickButtonFavorite = () => {
     dispatch(isFavorite(kinopoiskId))

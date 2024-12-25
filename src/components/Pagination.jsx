@@ -3,7 +3,7 @@ import { buildeShemePagination } from '@/utils/buildShemePagination'
 import { getPath } from '@/config/pagesPaths'
 
 export function Pagination({ currentPage, pageCount }) {
-  const location = useLocation()
+  const { pathname } = useLocation()
   const { query } = useParams()
 
   function renderPaginationItems() {
@@ -16,7 +16,7 @@ export function Pagination({ currentPage, pageCount }) {
 				<li className="pagination__item" key={index}>
           {item == '...' ?
             <span className="pagination__link">...</span> :
-            <NavLink className="pagination__link" to={getPath(location, item, query)}>{item}</NavLink>
+            <NavLink className="pagination__link" to={getPath(pathname, item, query)}>{item}</NavLink>
           }
         </li>
 			)

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { fetchFilmsSearch } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
 import { Loader } from '@/components/shared/Loader'
@@ -9,10 +9,10 @@ import { Pagination } from '@/components/Pagination'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function SearchResults () {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { query, currentPage } = useParams()
-  const { searchList: films, isLoaded, error, pageCount } = useSelector((state) => state.films)
+  const { searchList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
     dispatch(fetchFilmsSearch({ keyword: query, currentPage }))

@@ -1,4 +1,4 @@
-export function className (classes) {
+export function className (classes: string[]) {
   let result = ''
 
   for (let key in classes) {

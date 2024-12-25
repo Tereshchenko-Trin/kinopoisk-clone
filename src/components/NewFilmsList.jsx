@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate } from 'react-router-dom'
 import { fetchFilmsNew } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
@@ -8,9 +8,9 @@ import { pagesPaths } from '@/config/pagesPaths'
 import { getMonth } from '@/utils/getMounth'
 
 export function NewFilmsList () {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { newList: films, isLoaded, error } = useSelector((state) => state.films)
+  const { newList: films, isLoaded, error } = useAppSelector((state) => state.films)
 
   useEffect(() => {
     const newCriteria = {

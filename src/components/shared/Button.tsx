@@ -1,4 +1,6 @@
-export function Button({ children, type, style, onClick }) {
+import { IButtonProps } from '@/types/propTypes'
+
+export function Button({ children, type, style, onClick }: IButtonProps) {
   switch(style) {
     case 'primary':
       return (

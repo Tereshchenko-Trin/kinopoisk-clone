@@ -6,7 +6,7 @@ import {
   filmSimilarEndpoint
 } from '@/config/api'
 
-export const requestFilm = async (kinopoiskId) => {
+export const requestFilm = async (kinopoiskId: number) => {
   try {
     const response = await get(`${filmEndpoint}${kinopoiskId}`)
 
@@ -32,7 +32,7 @@ export const requestFilmStaff = async (params = {}) => {
   }
 }
 
-export const requestFilmBoxOffice = async (kinopoiskId) => {
+export const requestFilmBoxOffice = async (kinopoiskId: number) => {
   try {
     const response = await get(`${filmBoxOfficeEndpoint}${kinopoiskId}/box_office`)
 
@@ -45,7 +45,7 @@ export const requestFilmBoxOffice = async (kinopoiskId) => {
   }
 }
 
-export const requestFilmSimilar = async (kinopoiskId) => {
+export const requestFilmSimilar = async (kinopoiskId: number) => {
   try {
     const response = await get(`${filmSimilarEndpoint}${kinopoiskId}/similars`)
 

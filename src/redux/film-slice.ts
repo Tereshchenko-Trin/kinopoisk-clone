@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { PayloadAction } from '@reduxjs/toolkit'
 import { 
   requestFilm, 
   requestFilmStaff, 
@@ -6,8 +7,20 @@ import {
   requestFilmSimilar
 } from '@/services/film'
 import { favorites } from '@/utils/favorites'
+import { IFilmData, IFilmBoxOffice, IFilmSimilarList, IFilmStaffList } from '@/types/filmDataTypes'
 
-const initialState = {
+interface IFilmsState {
+  data: IFilmData | null,
+  staffList: IFilmStaffList[],
+  boxOffice?: IFilmBoxOffice[],
+  similarList?: IFilmSimilarList[],
+  favoritesList: IFilmData[],
+  favoritesId: number[],
+  isLoaded: boolean,
+  error?: string | null,
+}
+
+const initialState: IFilmsState = {
   data: null,
   staffList: [],
   boxOffice: [],
@@ -18,7 +31,7 @@ const initialState = {
   error: null
 }
 
-export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId, { rejectWithValue }) => {
+export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId: number, { rejectWithValue }) => {
   const data = await requestFilm(kinopoiskId)
 
   if (data.hasError) {
@@ -28,7 +41,7 @@ export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId, 
   return data
 })
 
-export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (filmId, { rejectWithValue }) => {
+export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (filmId: number, { rejectWithValue }) => {
   const data = await requestFilmStaff(filmId)
 
   if (data.hasError) {
@@ -38,7 +51,7 @@ export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (fil
   return data
 })
 
-export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', async (kinopoiskId, { rejectWithValue }) => {
+export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', async (kinopoiskId: number, { rejectWithValue }) => {
   const data = await requestFilmBoxOffice(kinopoiskId)
 
   if (data.hasError) {
@@ -48,7 +61,7 @@ export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', as
   return data
 })
 
-export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async (kinopoiskId, { rejectWithValue }) => {
+export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async (kinopoiskId: number, { rejectWithValue }) => {
   const data = await requestFilmSimilar(kinopoiskId)
 
   console.log(data.items)
@@ -63,11 +76,11 @@ export const filmSlice = createSlice({
   name: 'film',
   initialState,
   reducers: {
-    isFavorite: (state, action) => {
+    isFavorite: (state, action: PayloadAction<number>) => {
       const filmId = action.payload
       if(!state.favoritesId.includes(filmId)) {
         state.favoritesId.push(filmId)
-        state.favoritesList.push(state.data) 
+        state.favoritesList.push(state.data)
       } else {
         state.favoritesId = state.favoritesId.filter((id) => id !== filmId)
         state.favoritesList = state.favoritesList.filter((film) => film.kinopoiskId !== filmId)

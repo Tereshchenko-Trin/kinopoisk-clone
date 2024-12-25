@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux'
+import { useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FilmCard } from '@/components/shared/FilmCard'
 import { Pagination } from '@/components/Pagination'
@@ -8,7 +8,7 @@ import { pagesPaths } from '@/config/pagesPaths'
 export function FavoritesFilmsList () {
   const navigate = useNavigate()
   // const { currentPage } = useParams()
-  const { favoritesList: films, isLoaded, error } = useSelector((state) => state.film)
+  const { favoritesList: films, isLoaded, error } = useAppSelector((state) => state.film)
 
   function renderCards() {
     return (

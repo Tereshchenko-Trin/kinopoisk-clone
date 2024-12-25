@@ -1,12 +1,12 @@
 import Logo from '@/assets/icons/iconLogoDark.svg'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '@/hooks/useStore'
 import { SearchForm } from '@/components/SearchForm'
 import { IconButton } from '@/components/shared/IconButton'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function Header() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const handleClickButtonFilter = () => {
     console.log('click')

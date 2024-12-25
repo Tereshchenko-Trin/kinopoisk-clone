@@ -1,4 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import { IFilterList, IHomeList, INewList, ISearchList, ITopFilmsList, ITopSeriesList, ITrendsList } from '@/types/filmDataTypes'
+import { IFilterData } from '@/types/IFilterData'
 import { 
   requestFilms,
   requestFilmsNew, 
@@ -6,7 +9,21 @@ import {
   requestFilmsFilter 
 } from '@/services/films'
 
-const initialState = {
+interface IFilmsState {
+  homeList: IHomeList[],
+  topFilmsList: ITopFilmsList[],
+  topSeriesList: ITopSeriesList[],
+  trendsList: ITrendsList[],
+  newList: INewList[],
+  searchList: ISearchList[],
+  filterList: IFilterList[],
+  pageCount: number | null,
+  isLoaded: boolean,
+  error?: string | null,
+  filterData: IFilterData | null,
+}
+
+const initialState: IFilmsState = {
   homeList: [],
   topFilmsList: [],
   topSeriesList: [],
@@ -79,7 +96,7 @@ export const filmsSlice = createSlice({
   name: 'films',
   initialState,
   reducers: {
-    setFilterFormData: (state, action) => {
+    setFilterFormData: (state, action: PayloadAction<IFilterData>) => {
       state.filterData = action.payload
     }
   },
@@ -106,7 +123,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchTopFilms.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.topFilmsList = action.payload.items.filter((item) => item.type == 'FILM')
+        state.topFilmsList = action.payload.items.filter((item: ITopFilmsList) => item.type == 'FILM')
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchTopFilms.rejected, (state, action) => {
@@ -120,7 +137,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchTopSeries.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.topSeriesList = action.payload.items.filter((item) => item.type == 'TV_SERIES')
+        state.topSeriesList = action.payload.items.filter((item: ITopSeriesList) => item.type == 'TV_SERIES')
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchTopSeries.rejected, (state, action) => {

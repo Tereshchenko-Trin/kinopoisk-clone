@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchFilmsTrends } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
@@ -8,10 +8,10 @@ import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function TrendsFilmsList () {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { currentPage } = useParams()
-  const { trendsList: films, isLoaded, error, pageCount } = useSelector((state) => state.films)
+  const { trendsList: films, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
     const trendsCriteria = {

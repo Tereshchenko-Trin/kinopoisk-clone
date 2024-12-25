@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchFilmsFilter } from '@/redux/films-slice'
 import { FilmCard } from '@/components/shared/FilmCard'
@@ -8,10 +8,10 @@ import { Pagination } from '@/components/Pagination'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function FilterResults() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { currentPage } = useParams()
-  const { filterList: films, filterData, isLoaded, error, pageCount } = useSelector((state) => state.films)
+  const { filterList: films, filterData, isLoaded, error, pageCount } = useAppSelector((state) => state.films)
 
   useEffect(() => {
     dispatch(fetchFilmsFilter({ ...filterData, currentPage }))

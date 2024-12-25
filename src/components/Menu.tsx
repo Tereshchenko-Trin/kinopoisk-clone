@@ -27,7 +27,7 @@ export function Menu() {
 				<NavLink to={pagesPaths.settings}>
          <IconButton type="settings">Settings</IconButton>
 				</NavLink>
-				<NavLink to="/home/filter/">
+				<NavLink to="/main/filter/">
          <IconButton type="settings">Filter</IconButton>
 				</NavLink>
 			</nav>

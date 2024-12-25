@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '@/hooks/useStore'
 import { useParams, useNavigate } from 'react-router-dom'
 import { fetchFilm, fetchFilmStaff, fetchFilmBoxOffice } from '@/redux/film-slice'
 import { FilmInfo } from '@/components/FilmInfo'
@@ -7,10 +7,10 @@ import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 
 export function Film() {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { filmId } = useParams()
-  const { data: film, staffList, boxOffice, isLoading, error } = useSelector((state) => state.film)
+  const { data: film, staffList, boxOffice, isLoading, error } = useAppSelector((state) => state.film)
 
   useEffect(() => {
     dispatch(fetchFilm(filmId))
