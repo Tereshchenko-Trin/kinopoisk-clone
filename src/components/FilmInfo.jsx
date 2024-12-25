@@ -8,10 +8,9 @@ import {
   renderWriters,
   renderBoxOffice
 } from '@/utils/helpersRender'
-import favorite from '@/assets/icons/iconFavorites.svg'
+import { FavoriteFeat } from '@/components/FavoriteFeat'
 import { SimilarFilms } from '@/components/SimilarFilms'
 import { className } from '@/utils/className'
-import { Button } from '@/components/shared/Button'
 
 export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}) {
   const kinopoiskId = filmInfo.kinopoiskId || filmId
@@ -38,8 +37,6 @@ export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}) 
     durationClassName.includes('hidden'),
   })}`
 
-  const handleClickButtonFavorite = () => {console.log('click')}
-
   return (
     <div className="film">
       <div className="film__info-container_left">
@@ -47,9 +44,7 @@ export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}) 
           <img className="film__poster" src={filmInfo.posterUrl} alt="poster" />
         </div>
         <div className="film__buttons">
-          <Button style="secondary" className="film__favorites-button" type="button" onClick={handleClickButtonFavorite}>
-            <img src={favorite} className="" />
-          </Button>
+          <FavoriteFeat kinopoiskId={kinopoiskId} />
         </div>
       </div>
       <div className="film__info-container_right">

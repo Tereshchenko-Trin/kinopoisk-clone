@@ -1,7 +1,7 @@
-import { HomeFilmsList } from '@/components/HomeFilmsList'
+import { FavoritesFilmsList } from '@/components/FavoritesFilmsList'
 
 export function FavoritesFilms() {
   return (
-    <HomeFilmsList />
+    <FavoritesFilmsList />
   )
 }

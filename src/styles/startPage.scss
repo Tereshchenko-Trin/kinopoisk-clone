@@ -6,8 +6,12 @@
   padding: 0px 15px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__logo-container {
+    max-width: 1796px;
+    width: 100%;
     padding: 48px 0px;
   }
 
@@ -17,8 +21,8 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
     align-items: center;
+    gap: 40px;
   }
 
   &__title {

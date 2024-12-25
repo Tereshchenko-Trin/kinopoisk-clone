@@ -11,6 +11,8 @@ const initialState = {
   staffList: [],
   boxOffice: [],
   similarList: [],
+  favoritesList: [],
+  favoritesId: [],
   isLoaded: false,
   error: null
 }
@@ -55,12 +57,23 @@ export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async 
 
   return data
 })
-
+console.log(initialState.favoritesList)
 export const filmSlice = createSlice({
   name: 'film',
   initialState,
-  reducers: {},
-  
+  reducers: {
+    isFavorite: (state, action) => {
+      const filmId = action.payload
+      if(!state.favoritesId.includes(filmId)) {
+        state.favoritesId.push(filmId)
+        state.favoritesList.push(state.data) 
+      } else if(state.favoritesId.includes(filmId)) {
+        state.favoritesId = state.favoritesId.filter((id) => id !== filmId)
+        state.favoritesList = state.favoritesList.filter((film) => film.kinopoiskId !== filmId)
+      }
+    }
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchFilm.pending, (state) => {
@@ -116,5 +129,7 @@ export const filmSlice = createSlice({
       })
   }
 })
+
+export const { isFavorite } = filmSlice.actions
 
 export const filmReducer = filmSlice.reducer

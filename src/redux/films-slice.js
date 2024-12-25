@@ -5,7 +5,6 @@ import {
   requestFilmsSearch, 
   requestFilmsFilter 
 } from '@/services/films'
-import { normalizeFilms } from '@/utils/normalizeFilms'
 
 const initialState = {
   homeList: [],
@@ -93,7 +92,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilms.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.homeList = normalizeFilms(action.payload.items)
+        state.homeList = action.payload.items
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchFilms.rejected, (state, action) => {
@@ -107,7 +106,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchTopFilms.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.topFilmsList = normalizeFilms(action.payload.items.filter((item) => item.type == 'FILM'))
+        state.topFilmsList = action.payload.items.filter((item) => item.type == 'FILM')
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchTopFilms.rejected, (state, action) => {
@@ -121,7 +120,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchTopSeries.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.topSeriesList = normalizeFilms(action.payload.items.filter((item) => item.type == 'TV_SERIES'))
+        state.topSeriesList = action.payload.items.filter((item) => item.type == 'TV_SERIES')
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchTopSeries.rejected, (state, action) => {
@@ -135,7 +134,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilmsTrends.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.trendsList = normalizeFilms(action.payload.items)
+        state.trendsList = action.payload.items
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchFilmsTrends.rejected, (state, action) => {
@@ -149,7 +148,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilmsNew.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.newList = normalizeFilms(action.payload.items)
+        state.newList = action.payload.items
         state.pageCount = action.payload.totalPages
       })
       .addCase(fetchFilmsNew.rejected, (state, action) => {
@@ -163,7 +162,7 @@ export const filmsSlice = createSlice({
       })
       .addCase(fetchFilmsSearch.fulfilled, (state, action) => {
         state.isLoaded = false
-        state.searchList = normalizeFilms(action.payload.films)
+        state.searchList = action.payload.films
         state.pageCount = action.payload.pagesCount
       })
       .addCase(fetchFilmsSearch.rejected, (state, action) => {
@@ -177,7 +176,7 @@ export const filmsSlice = createSlice({
 			})
 			.addCase(fetchFilmsFilter.fulfilled, (state, action) => {
 				state.isLoaded = false
-				state.filterList = normalizeFilms(action.payload.items)
+				state.filterList = action.payload.items
         state.pageCount = action.payload.totalPages
 			})
 			.addCase(fetchFilmsFilter.rejected, (state, action) => {
