@@ -5,13 +5,14 @@ import {
   requestFilmBoxOffice, 
   requestFilmSimilar
 } from '@/services/film'
+import { favorites } from '@/utils/favorites'
 
 const initialState = {
   data: null,
   staffList: [],
   boxOffice: [],
   similarList: [],
-  favoritesList: [],
+  favoritesList: favorites.getFromLocalStorage() || [],
   favoritesId: [],
   isLoaded: false,
   error: null
@@ -57,7 +58,7 @@ export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async 
 
   return data
 })
-console.log(initialState.favoritesList)
+
 export const filmSlice = createSlice({
   name: 'film',
   initialState,
@@ -67,10 +68,11 @@ export const filmSlice = createSlice({
       if(!state.favoritesId.includes(filmId)) {
         state.favoritesId.push(filmId)
         state.favoritesList.push(state.data) 
-      } else if(state.favoritesId.includes(filmId)) {
+      } else {
         state.favoritesId = state.favoritesId.filter((id) => id !== filmId)
         state.favoritesList = state.favoritesList.filter((film) => film.kinopoiskId !== filmId)
       }
+      favorites.setToLocalStorage({ ...state.favoritesList })
     }
   },
 
