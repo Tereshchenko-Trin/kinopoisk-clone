@@ -2,8 +2,9 @@ import favorite from '@/assets/icons/iconFavorites.svg'
 import { useAppDispatch } from '@/hooks/useStore'
 import { isFavorite } from '@/redux/film-slice'
 import { Button } from '@/components/shared/Button'
+import { IFavoriteFeatProps } from '@/types/propTypes'
 
-export function FavoriteFeat({ kinopoiskId }) {
+export function FavoriteFeat({ kinopoiskId }: IFavoriteFeatProps) {
   const dispatch = useAppDispatch()
 
   const handleClickButtonFavorite = () => {

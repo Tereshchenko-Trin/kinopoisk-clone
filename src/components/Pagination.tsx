@@ -12,7 +12,7 @@ export function Pagination({ currentPage, pageCount }: IPaginationProps) {
 
     if(scheme == null) return null
 
-		return scheme.map((item: number | string, index: number) => {
+		return scheme.map((item: number, index: number) => {
 			return (
 				<li className="pagination__item" key={index}>
           {item == '...' ?

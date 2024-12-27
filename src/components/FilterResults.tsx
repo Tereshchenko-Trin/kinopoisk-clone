@@ -6,6 +6,7 @@ import { FilmCard } from '@/components/shared/FilmCard'
 import { Loader } from '@/components/shared/Loader'
 import { Pagination } from '@/components/Pagination'
 import { pagesPaths } from '@/config/pagesPaths'
+import {IFilterList} from '@/types/filmDataTypes'
 
 export function FilterResults() {
   const dispatch = useAppDispatch()
@@ -19,7 +20,7 @@ export function FilterResults() {
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} ></FilmCard>)
+      films.map((film: IFilterList) => <FilmCard key={film.kinopoiskId} {...film} ></FilmCard>)
     )
   }
 

@@ -136,7 +136,7 @@ export function IconButton({ type, children, onClick }: IIconButtonProps) {
     case 'close':
       return (
         <button type="button" className="icon-button" onClick={onClick}>
-          <img src={Close} alt="close" className="icon" />
+          <img src={Close} alt="close" className="icon icon-close" />
           {children}
         </button>
       )

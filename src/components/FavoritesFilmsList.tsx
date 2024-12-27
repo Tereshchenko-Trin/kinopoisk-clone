@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { FilmCard } from '@/components/shared/FilmCard'
 import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
+import { IFilmData } from '@/types/filmDataTypes'
 
 export function FavoritesFilmsList () {
   const navigate = useNavigate()
@@ -10,7 +11,7 @@ export function FavoritesFilmsList () {
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} />)
+      films.map((film: IFilmData) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 

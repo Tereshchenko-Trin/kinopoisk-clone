@@ -7,6 +7,7 @@ import { Loader } from '@/components/shared/Loader'
 import { pagesPaths } from '@/config/pagesPaths'
 import { getMonth } from '@/utils/getMounth'
 import { INewFilmsParams } from '@/types/fetchParamsTypes'
+import { INewList } from '@/types/filmDataTypes'
 
 export function NewFilmsList () {
   const dispatch = useAppDispatch()
@@ -24,7 +25,7 @@ export function NewFilmsList () {
 
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.kinopoiskId} {...film} />)
+      films.map((film: INewList) => <FilmCard key={film.kinopoiskId} {...film} />)
     )
   }
 

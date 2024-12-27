@@ -3,12 +3,19 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 export function SearchForm() {
 	const navigate = useNavigate()
-	const { query: queryParam } = useParams()
+	const { query: queryParam } = useParams<string>()
 	const [query, setQuery] = useState<string>(queryParam)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(event.target.value)
 	}
+
+	const handleClear = (event: React.FormEvent<HTMLInputElement>) => {
+    if (!event.target.value) {
+      setQuery('')
+      navigate('/main/home/1')
+    }
+  }
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault()
@@ -27,6 +34,7 @@ export function SearchForm() {
 				id="search"
 				value={query || ''}
 				onChange={handleChange}
+				onInput={handleClear}
 				placeholder="Search..."></input>
 			</div>
 		</form>

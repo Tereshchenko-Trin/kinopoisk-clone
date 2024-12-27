@@ -1,0 +1,79 @@
+.filter {
+  max-width: 518px;
+  width: 100%;
+  padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+
+  &__fields-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+
+  &__label {
+    @include desktopS1-3();
+    color: $contextualWhite;
+    margin-bottom: 8px;
+  }
+
+  &__select {
+    display: block;
+    width: 100%;
+    height: 56px;
+    padding: 16px 20px;
+    color: $systemSecondary;
+    background-color: $backgroundGraphite;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+      background-color: $backgroundGraphite;
+      border-color: $systemPrimary2;
+      outline: 0;
+      box-shadow: 0 0 3px 1px $systemPrimary2;
+    }
+  }
+
+  &__input{
+    display: block;
+    width: 100%;
+    height: 56px;
+    padding: 16px 20px;
+    color: $systemSecondary;
+    background-color: $backgroundGraphite;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 10px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &_from, &_to {
+      width: 199px;
+    }
+
+    &::placeholder {
+      color: $systemSecondary;
+      @include desktopBody();
+    }
+
+    &:focus {
+      background-color: $backgroundGraphite;
+      border-color: $systemPrimary2;
+      outline: 0;
+      box-shadow: 0 0 3px 1px $systemPrimary2;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-top: 24px;
+  }
+}

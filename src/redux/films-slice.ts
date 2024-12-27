@@ -21,6 +21,7 @@ interface IFilmsState {
   isLoaded: boolean,
   error?: string | null,
   filterData: IFilterData | null,
+  isShownFilterModal: boolean,
 }
 
 const initialState: IFilmsState = {
@@ -35,6 +36,7 @@ const initialState: IFilmsState = {
   isLoaded: false,
   error: null,
   filterData: null,
+  isShownFilterModal: false,
 }
 
 export const fetchFilms = createAsyncThunk('films/fetchFilms', async (params = {}) => {
@@ -98,6 +100,14 @@ export const filmsSlice = createSlice({
   reducers: {
     setFilterFormData: (state, action: PayloadAction<IFilterData>) => {
       state.filterData = action.payload
+    },
+    shownFilterModal: (state) => {
+      state.isShownFilterModal = true
+      console.log(state.isShownFilterModal)
+    },
+    hideFilterModal: (state) => {
+      state.isShownFilterModal = false
+      console.log(state.isShownFilterModal)
     }
   },
   
@@ -203,6 +213,6 @@ export const filmsSlice = createSlice({
   }
 })
 
-export const { setFilterFormData } = filmsSlice.actions
+export const { setFilterFormData, shownFilterModal, hideFilterModal } = filmsSlice.actions
 
 export const filmsReducer = filmsSlice.reducer

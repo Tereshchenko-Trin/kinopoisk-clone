@@ -10,18 +10,14 @@ import {
 } from '@/utils/helpersRender'
 import { FavoriteFeat } from '@/components/FavoriteFeat'
 import { SimilarFilms } from '@/components/SimilarFilms'
-import { className } from '@/utils/className'
+import { className, ratingClassName } from '@/utils/className'
 import { IFilmInfoProp } from '@/types/propTypes'
 
-export function FilmInfo ({filmInfo, staffInfo, boxOfficeInfo, filmId, rating}: IFilmInfoProp) {
-  const kinopoiskId = filmInfo.kinopoiskId || filmId
+export function FilmInfo ({ filmInfo, staffInfo, boxOfficeInfo, filmId, rating }: IFilmInfoProp) {
+  const kinopoiskId: number = filmInfo.kinopoiskId || filmId
+  const filmRating: number | null = filmInfo.ratingKinopoisk || rating
 
-  const kinopoiskRatingClassName = `film__rating_kinopoisk ${className ({
-    'rating_green': filmInfo.ratingKinopoisk >= 7.5 || rating >= 7.5,
-    'rating_yellow': (filmInfo.ratingKinopoisk < 7.5 && filmInfo.ratingKinopoisk >= 5) || (rating < 7.5 && rating >= 5),
-    'rating_orange': filmInfo.ratingKinopoisk < 5 || rating < 5,
-    'rating_hidden': filmInfo.ratingKinopoisk == null && rating == null,
-  })}`
+  const kinopoiskRatingClassName = ratingClassName(filmRating, 'film__rating_kinopoisk')
 
   const imdbRatingClassName = `film__rating_imdb ${className ({
     'rating_hidden': filmInfo.ratingKinopoisk == null && rating == null,

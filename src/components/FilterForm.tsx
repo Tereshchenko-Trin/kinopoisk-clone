@@ -19,20 +19,23 @@ export function FilterForm () {
 	}
 
   return (
-    <form className="filter" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="filter"
+      onSubmit={handleSubmit(onSubmit)}
+      onReset={reset}>
 
-      <div className="col-6">
-        <label className="form-label" htmlFor="order" >Sort by</label>
-        <select className="form-control" { ...register('order')} >
+      <div className="filter__field">
+        <label className="filter__label" htmlFor="order" >Sort by</label>
+        <select className="filter__select" { ...register('order')} >
           <option value="RATING">Rating</option>
           <option value="YEAR">Year</option>
           <option value="NUM_VOTE">Vote</option>
         </select>
       </div>
 
-      <div className="col-6">
-        <label className="form-label" htmlFor="type" >Type</label>
-        <select className="form-control" { ...register('type')} >
+      <div className="filter__field">
+        <label className="filter__label" htmlFor="type" >Type</label>
+        <select className="filter__select" { ...register('type')} >
           <option value="ALL">All</option>
           <option value="FILM">Film</option>
           <option value="TV_SHOW">TV show</option>
@@ -41,23 +44,23 @@ export function FilterForm () {
         </select>
       </div>
 
-      <div className="col-6">
-        <label className="form-label" htmlFor="keyword">Full or short movie name</label>
+      <div className="filter__field">
+        <label className="filter__label" htmlFor="keyword">Full or short movie name</label>
         <input 
           type="text"
-          className="form-control"
+          className="filter__input"
           placeholder="Your text"
           maxLength={50}
           { ...register('keyword')}
         />
       </div>
 
-      <div className="form-row d-flex mb-3">
-        <div className="col">
-          <label className="form-label" htmlFor="ratingFrom">Rating</label>
+      <div className="filter__fields-container">
+        <div className="filter__field">
+          <label className="filter__label" htmlFor="ratingFrom">Rating</label>
           <input 
             type="number"
-            className="form-control"
+            className="filter__input filter__input_from"
             placeholder="From"
             defaultValue={0}
             min={0}
@@ -66,12 +69,12 @@ export function FilterForm () {
             { ...register('ratingFrom')}
           />
         </div>
-        <div className="col">
-          <label className="form-label" htmlFor="ratingTo" />
+        <div className="filter__field">
+          <label className="filter__label" htmlFor="ratingTo" />
           <input 
             type="number" 
             id="ratingTo" 
-            className="form-control" 
+            className="filter__input filter__input_to" 
             placeholder="To" 
             defaultValue={10} 
             min={0} 
@@ -82,13 +85,13 @@ export function FilterForm () {
         </div>
       </div>
 
-    <div className="form-row d-flex mb-3">
-      <div className="col">
-        <label className="form-label" htmlFor="ratingFrom">Years</label>
+    <div className="filter__fields-container">
+      <div className="filter__field">
+        <label className="filter__label" htmlFor="ratingFrom">Years</label>
         <input 
           type="number" 
           id="yearFrom" 
-          className="form-control" 
+          className="filter__input filter__input_from" 
           placeholder="From" 
           defaultValue={1895} 
           min={1895} 
@@ -97,12 +100,12 @@ export function FilterForm () {
           { ...register('yearFrom')} 
         />
       </div>
-      <div className="col">
-        <label className="form-label" htmlFor="yearTo"></label>
+      <div className="filter__field">
+        <label className="filter__label" htmlFor="yearTo"></label>
         <input 
           type="number" 
           id="yearTo" 
-          className="form-control" 
+          className="filter__input filter__input_to" 
           placeholder="To" 
           defaultValue={new Date().getFullYear()} 
           min={1895} 
@@ -113,7 +116,7 @@ export function FilterForm () {
       </div>
     </div>
 
-    <div className="d-flex">
+    <div className="filter__buttons-container">
       <Button type="reset" style="secondary">Clear filter</Button>
       <Button type="submit" style="primary">Show results</Button>
     </div>
