@@ -1,7 +1,10 @@
 .cards {
+  max-width: 1490px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  justify-content:start;
   align-items: center;
 
   &__container {
@@ -15,9 +18,11 @@
 .card {
   width: 266px;
   background-color: transparent;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  scroll-snap-align: start;
 
   &__poster {
     position: relative;
@@ -32,22 +37,6 @@
     position: absolute;
     left: 20px;
     top: 20px;
-
-    &_green {
-      background-color: $tetriaryGreen;
-    }
-
-    &_yellow {
-      background-color: $tetriaryYellow;
-    }
-
-    &_orange {
-      background-color: $tetriaryOrange;
-    }
-
-    &_hidden {
-      visibility: hidden;
-    }
   }
 
   &__rating {

@@ -1,13 +1,13 @@
 .button {
-  max-width: 300px;
-  width: 100%;
+  width: 200px;
 	height: 56px;
-	padding: 16px 70px;
+	padding: 16px 20px;
 	border: none;
 	border-radius: 10px;
   color: $contextualWhite;
   @include desktopS1-3();
   transition: 0.2s;
+  text-align: center;
   
   &_primary {
     background-color: $systemPrimary;
@@ -15,13 +15,21 @@
     &:hover {
       background-color: $systemPrimary2;
     } 
+
+    &:active {
+      background-color: $systemPrimary;
+    } 
   }
 
   &_secondary {
     background-color: $backgroundGraphite;
 
     &:hover {
-      background-color: $backgroundDark;
+      background-color: $systemSecondary;
+    } 
+
+    &:active {
+      background-color: $backgroundGraphite;
     } 
   }
 }
@@ -61,16 +69,8 @@
     color: $systemPrimary2;
   }
   
-  &>.icon:hover {
-    filter: var(--system-primary2);
-  }
-  
   &:active{
     color: $systemPrimary;
-  } 
-  
-  &>.icon:active {
-    filter: var(--system-primary);
   }
 }
 
@@ -78,8 +78,23 @@
   margin-right: 20px;
   filter: var(--system-secondary);
 
-  &_user, &_filter {
+  &_user,
+  &_filter,
+  &_arrowLeft,
+  &_arrowRight {
     margin-right: 0px;
     filter: var(--contextual-white);
+  }
+
+  &:hover {
+    filter: var(--system-primary2);
+  }
+  
+  &:active {
+    filter: var(--system-primary);
+  }
+
+  &:disabled {
+    filter: var(--system-secondary);
   }
 }

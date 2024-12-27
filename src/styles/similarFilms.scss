@@ -1,0 +1,38 @@
+.similar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  &_hidden {
+    display: none;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+
+  &__title {
+    color: $contextualWhite;
+    @include desktopH2();
+  }
+
+  &__pagination {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__container {
+    min-width: 100%;
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}

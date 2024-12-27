@@ -1,0 +1,55 @@
+.filter-modal {
+  max-width: 518px;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 48px 0px;
+  border-radius: 10px;
+  background-color: $backgroundDark;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+  animation: slide-in 0.3s ease-in-out;
+
+  &__menu {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+  }
+
+  &__header {
+    max-width: 438px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    @include desktopH2();
+    color: $contextualWhite;
+  }
+}
+
+.icon-close {
+  margin-right: 0px;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
