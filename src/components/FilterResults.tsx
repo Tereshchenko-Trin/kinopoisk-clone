@@ -6,7 +6,7 @@ import { FilmCard } from '@/components/shared/FilmCard'
 import { Loader } from '@/components/shared/Loader'
 import { Pagination } from '@/components/Pagination'
 import { pagesPaths } from '@/config/pagesPaths'
-import {IFilterList} from '@/types/filmDataTypes'
+import { IFilterList } from '@/types/filmDataTypes'
 
 export function FilterResults() {
   const dispatch = useAppDispatch()

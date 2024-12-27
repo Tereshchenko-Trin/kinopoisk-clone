@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { pagesPaths } from '@/config/pagesPaths'
 
 export function SearchForm() {
 	const navigate = useNavigate()
@@ -10,10 +11,10 @@ export function SearchForm() {
 		setQuery(event.target.value)
 	}
 
-	const handleClear = (event: React.FormEvent<HTMLInputElement>) => {
+	const handleClear = (event) => {
     if (!event.target.value) {
       setQuery('')
-      navigate('/main/home/1')
+      navigate(pagesPaths.home)
     }
   }
 

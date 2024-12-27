@@ -1,6 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { IFilterList, IHomeList, INewList, ISearchList, ITopFilmsList, ITopSeriesList, ITrendsList } from '@/types/filmDataTypes'
+import { 
+  IFilterList, 
+  IHomeList, 
+  INewList, 
+  ISearchList, 
+  ITopFilmsList, 
+  ITopSeriesList, 
+  ITrendsList 
+} from '@/types/filmDataTypes'
 import { IFilterData } from '@/types/IFilterData'
 import { 
   requestFilms,
@@ -39,58 +47,71 @@ const initialState: IFilmsState = {
   isShownFilterModal: false,
 }
 
-export const fetchFilms = createAsyncThunk('films/fetchFilms', async (params = {}) => {
+export const fetchFilms = createAsyncThunk<
+{ total: number, totalPages: number, items: IHomeList[] },
+{ currentPage: number }>(
+  'films/fetchFilms', async (params) => {
   const page = params.currentPage
-  const data = await requestFilms({ page, ...params })
+  const data = await requestFilms({ page, ...(params ?? {}) })
 
-  console.log(data.items)
   return data
 })
 
-export const fetchTopFilms = createAsyncThunk('films/fetchTopFilms', async (params = {}) => {
+export const fetchTopFilms = createAsyncThunk<
+{ total: number, totalPages: number, items: ITopFilmsList[] }, 
+{ currentPage: number }>(
+  'films/fetchTopFilms', async (params) => {
   const page = params.currentPage
-  const data = await requestFilms({ page, ...params })
+  const data = await requestFilms({ page, ...(params ?? {}) })
 
-  console.log(data.items)
   return data
 })
 
-export const fetchTopSeries = createAsyncThunk('films/fetchTopSeries', async (params = {}) => {
+export const fetchTopSeries = createAsyncThunk<
+{ total: number, totalPages: number, items: ITopSeriesList[] }, 
+{ currentPage: number }>(
+  'films/fetchTopSeries', async (params) => {
   const page = params.currentPage
-  const data = await requestFilms({ page, ...params })
+  const data = await requestFilms({ page, ...(params ?? {}) })
 
-  console.log(data.items)
   return data
 })
 
-export const fetchFilmsTrends = createAsyncThunk('films/fetchFilmsTrends', async (params = {}) => {
+export const fetchFilmsTrends = createAsyncThunk<
+{ total: number, totalPages: number, items: ITrendsList[] }, 
+{ currentPage: number }>(
+  'films/fetchFilmsTrends', async (params) => {
   const page = params.currentPage
-  const data = await requestFilmsFilter({ page, ...params })
+  const data = await requestFilmsFilter({ page, ...(params ?? {}) })
 
-	console.log(data.items)
   return data
 })
 
-export const fetchFilmsNew = createAsyncThunk('films/fetchFilmsNew', async (params = {}) => {
-  const data = await requestFilmsNew({ ...params })
+export const fetchFilmsNew = createAsyncThunk<
+{ total: number, items: INewList[] }>(
+  'films/fetchFilmsNew', async (params) => {
+  const data = await requestFilmsNew({ ...(params ?? {}) })
 
-	console.log(data.items)
   return data
 })
 
-export const fetchFilmsSearch = createAsyncThunk('films/fetchFilmsSearch', async (params = {}) => {
+export const fetchFilmsSearch = createAsyncThunk<
+{ keyword: string, pagesCount: number, searchFilmsCountResult: number, films: ISearchList[] }, 
+{ currentPage: number }>(
+  'films/fetchFilmsSearch', async (params) => {
   const page = params.currentPage
-  const data = await requestFilmsSearch({ page, ...params })
+  const data = await requestFilmsSearch({ page, ...(params ?? {}) })
 
-  console.log(data.films)
   return data
 })
 
-export const fetchFilmsFilter = createAsyncThunk('films/fetchFilmsFilter', async (params = {}) => {
+export const fetchFilmsFilter = createAsyncThunk<
+{ total: number, totalPages: number, items: IFilterList[] }, 
+{ currentPage: number }>(
+  'films/fetchFilmsFilter', async (params) => {
   const page = params.currentPage
-  const data = await requestFilmsFilter({ page, ...params })
+  const data = await requestFilmsFilter({ page, ...(params ?? {}) })
 
-	console.log(data.items)
   return data
 })
 
@@ -103,11 +124,9 @@ export const filmsSlice = createSlice({
     },
     shownFilterModal: (state) => {
       state.isShownFilterModal = true
-      console.log(state.isShownFilterModal)
     },
     hideFilterModal: (state) => {
       state.isShownFilterModal = false
-      console.log(state.isShownFilterModal)
     }
   },
   
@@ -176,7 +195,6 @@ export const filmsSlice = createSlice({
       .addCase(fetchFilmsNew.fulfilled, (state, action) => {
         state.isLoaded = false
         state.newList = action.payload.items
-        state.pageCount = action.payload.totalPages
       })
       .addCase(fetchFilmsNew.rejected, (state, action) => {
         state.isLoaded = false

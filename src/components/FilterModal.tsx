@@ -1,18 +1,13 @@
 import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { hideFilterModal } from '@/redux/films-slice'
 import { useRef } from 'react'
 import { FilterForm } from '@/components/FilterForm'
 import { IconButton } from '@/components/shared/IconButton'
 
-interface ModalProps {
-  visible: boolean,
-  onClose: () => void,
-}
-
 export function FilterModal() {
   const dispatch = useAppDispatch()
-  const filterModalRef = useRef(null)
+  const filterModalRef = useRef<HTMLDivElement>(null)
   const { isShownFilterModal } = useAppSelector((state) => state.films)
 
   const onClose = () => { dispatch(hideFilterModal()) }
@@ -25,8 +20,8 @@ export function FilterModal() {
     }
   }
   
-  const onClickOutside = (event) => {
-    if (filterModalRef.current && !filterModalRef.current.contains(event.target)) onClose()
+  const onClickOutside = (event: MouseEvent | TouchEvent) => {
+    if (filterModalRef.current && !filterModalRef.current.contains(event.target as Node)) onClose()
   }
 
   useEffect(() => {

@@ -5,10 +5,11 @@ import { FilmCard } from '@/components/shared/FilmCard'
 import { IconButton } from '@/components/shared/IconButton'
 import { Loader } from '@/components/shared/Loader'
 import { className } from '@/utils/className'
+import { IFilmSimilarList } from '@/types/filmDataTypes'
 
 export function SimilarFilms({ kinopoiskId }) {
   const dispatch = useAppDispatch()
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const { similarList: films, isLoaded, error } = useAppSelector((state) => state.film)
   
   useEffect(() => {
@@ -17,11 +18,11 @@ export function SimilarFilms({ kinopoiskId }) {
   
   function renderCards() {
     return (
-      films.map((film) => <FilmCard key={film.filmId} {...film}/>)
+      films.map((film: IFilmSimilarList) => <FilmCard key={film.filmId} {...film}/>)
     )
   }
 
-  const handleClickArrow = (distance) => {
+  const handleClickArrow = (distance: number) => {
     containerRef.current?.scrollBy({ left: distance, behavior: 'smooth' })
   }
   

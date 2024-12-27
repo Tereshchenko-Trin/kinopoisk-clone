@@ -9,10 +9,11 @@ import { pagesPaths } from '@/config/pagesPaths'
 export function Film() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { filmId } = useParams()
+  const { filmId } = useParams<string>()
   const { data: film, staffList, boxOffice, isLoading, error } = useAppSelector((state) => state.film)
 
   useEffect(() => {
+    Number(filmId)
     dispatch(fetchFilm(filmId))
     dispatch(fetchFilmStaff({ filmId }))
     dispatch(fetchFilmBoxOffice(filmId))

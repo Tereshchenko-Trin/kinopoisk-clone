@@ -14,7 +14,7 @@ export function FilterForm () {
     dispatch(setFilterFormData(data))
     
     const query = new URLSearchParams(data).toString()
-
+    
 		navigate(`/main/filter/${query}/1`)
 	}
 

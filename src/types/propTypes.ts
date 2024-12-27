@@ -21,11 +21,11 @@ export interface IFilmInfoProp {
 export interface IFilmCardProp {
   ratingKinopoisk?: number | null,
   rating?: number | null,
-  kinopoiskId: number | null,
+  kinopoiskId?: number | null,
   filmId?: number,
   nameOriginal?: string | null,
-  nameRu: string | null,
-  genres: IGenres[],
+  nameRu?: string | null,
+  genres?: IGenres[],
   posterUrl: string,
 }
 

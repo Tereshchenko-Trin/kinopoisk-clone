@@ -17,6 +17,7 @@ interface IFilmsState {
   favoritesList: IFilmData[],
   favoritesId: number[],
   isLoaded: boolean,
+  isLoading: boolean,
   error?: string | null,
 }
 
@@ -28,6 +29,7 @@ const initialState: IFilmsState = {
   favoritesList: favorites.getFromLocalStorage() || [],
   favoritesId: [],
   isLoaded: false,
+  isLoading: false,
   error: null
 }
 
@@ -38,6 +40,7 @@ export const fetchFilm = createAsyncThunk('film/fetchFilm', async (kinopoiskId: 
     return (rejectWithValue(data))
   }
 
+  console.log(data)
   return data
 })
 
@@ -48,6 +51,8 @@ export const fetchFilmStaff = createAsyncThunk('film/fetchFilmStaff', async (fil
     return (rejectWithValue(data))
   }
 
+  console.log(data)
+
   return data
 })
 
@@ -57,6 +62,8 @@ export const fetchFilmBoxOffice = createAsyncThunk('film/fetchFilmBoxOffice', as
   if (data.hasError) {
     return (rejectWithValue(data))
   }
+
+  console.log(data)
 
   return data
 })
@@ -69,6 +76,8 @@ export const fetchFilmSimilar = createAsyncThunk('film/fetchFilmSimilar', async 
     return (rejectWithValue(data))
   }
 
+  console.log(data)
+
   return data
 })
 
@@ -80,7 +89,7 @@ export const filmSlice = createSlice({
       const filmId = action.payload
       if(!state.favoritesId.includes(filmId)) {
         state.favoritesId.push(filmId)
-        state.favoritesList.push(state.data)
+        if(state.data) state.favoritesList.push(state.data)
       } else {
         state.favoritesId = state.favoritesId.filter((id) => id !== filmId)
         state.favoritesList = state.favoritesList.filter((film) => film.kinopoiskId !== filmId)
@@ -92,15 +101,15 @@ export const filmSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchFilm.pending, (state) => {
-        state.isLoaded = true
+        state.isLoading = true
         state.error = null
       })
       .addCase(fetchFilm.fulfilled, (state, action) => {
-        state.isLoaded = false
+        state.isLoading = false
         state.data = action.payload
       })
       .addCase(fetchFilm.rejected, (state, action) => {
-        state.isLoaded = false
+        state.isLoading = false
         state.error = action.error.message
       })
 
